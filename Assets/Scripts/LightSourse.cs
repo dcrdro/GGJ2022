@@ -14,7 +14,6 @@ public class LightSourse : MonoBehaviour
     }
     void Update()
     {
-        
         if (_light.type == LightType.Directional)
         {
             var dir = -transform.forward;
@@ -52,7 +51,7 @@ public class LightSourse : MonoBehaviour
                     IlluminatePlayer = false;
                 }
             }
-            else
+            else if(IlluminatePlayer)
             {
                 RaysCount--;
                 IlluminatePlayer = false;
