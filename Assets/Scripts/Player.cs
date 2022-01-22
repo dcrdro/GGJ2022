@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
     }
     private void Dash()
     {
-        if (Input.GetMouseButton(1) && _dashCooldown <= 0)
+        if (Input.GetMouseButtonDown(1) && _dashCooldown <= 0)
         {
             RotateTowardMouse();
             _rb.velocity = Model.transform.forward * (Speed * DashModifier);
