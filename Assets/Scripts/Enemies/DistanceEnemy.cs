@@ -64,7 +64,7 @@ public class DistanceEnemy : MonoBehaviour
     }
     private void RotateAwayFromPlayer()
     {
-        var look = Quaternion.Inverse(Quaternion.LookRotation(Player.Object.transform.position, transform.position));
+        var look = Quaternion.Inverse(Quaternion.LookRotation(Player.Object.transform.position - transform.position));
         look.x = 0;
         look.z = 0;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, look, RotateSpeed * Time.deltaTime);

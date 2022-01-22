@@ -43,4 +43,12 @@ public class FastEnemy : MonoBehaviour
         look.z = 0;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, look, RotateSpeed * Time.deltaTime);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject == Player.Object)
+        {
+            Player.health.TakeDamage(10);
+        }
+    }
 }

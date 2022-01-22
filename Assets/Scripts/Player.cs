@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
         {
             health = gameObject.AddComponent<HaveHealth>();
             health.MaxHealth = 100;
+            health.ToMax();
         }
         health.Death += Death;
         LightsChanged += ChangeVisualLightForm;
@@ -69,21 +70,29 @@ public class Player : MonoBehaviour
 
         Timer();
 
-        Dash();
         Attack();
-        if (_attackCooldown <= 0)
+
+        if (Dash()) { }
+        else if (_attackCooldown <= 0)
         {
             Move(vertical, horizontal);
             RotateTowardMoveDir(vertical, horizontal);
         }
-        AttackIndicator.transform.localRotation = Quaternion.AngleAxis(-180 * (_attackCooldown * 2), Vector3.up);
+        else if (_dashCooldown <= 0)
+        {
+            Speed /= 2;
+            Move(vertical, horizontal);
+            Speed *= 2;
+        }
+        AttackIndicator.transform.localRotation = Quaternion.AngleAxis(-180 * (_attackCooldown - 0.3f) / 0.2f, Vector3.up);
     }
 
     private void Timer()
     {
         if (_attackCooldown > 0) _attackCooldown -= Time.deltaTime;
-        else if (_attackCooldown <= 0.2) AttackIndicator.SetActive(false);
         else if (_attackCooldown < 0) _attackCooldown = 0;
+        
+        if (_attackCooldown <= 0.3) AttackIndicator.SetActive(false);
 
         if (_dashCooldown > 0) _dashCooldown -= Time.deltaTime;
         else if (_dashCooldown < 0) _dashCooldown = 0;
@@ -117,15 +126,17 @@ public class Player : MonoBehaviour
         }
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.cyan);
     }
-    private void Dash()
+    private bool Dash()
     {
-        if (Input.GetMouseButtonDown(1) && _dashCooldown <= 0)
+        if (Input.GetMouseButtonDown(1) && _dashCooldown <= 0 && _attackCooldown <= 0)
         {
             RotateTowardMouse();
             _rb.velocity = Model.transform.forward * (Speed * DashModifier);
             _dashCooldown = 0.5f;
             _attackCooldown = 0.2f;
+            return true;
         }
+        return false;
     }
     private void Attack()
     {
