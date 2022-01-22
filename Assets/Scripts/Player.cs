@@ -13,15 +13,23 @@ public class Player : MonoBehaviour
     public GameObject AttackIndicator;
     public GameObject Projectile;
 
+    public Material DarkMaterial;
+    public Material LightMaterial;
+
     public LayerMask EnemyLayers;
     public float AttackRange;
     public float Speed = 100f;
     public float RotationSpeed = 420f;
+    public float DashModifier = 5f;
 
+    private bool _onLight;
     public bool OnLight => LightSourse.RaysCount > 0;
+
+    public event Action LightsChanged;
 
     private Rigidbody _rb;
     private float _attackCooldown = 0;
+    private float _dashCooldown = 0;
 
     void Start()
     {
@@ -33,7 +41,15 @@ public class Player : MonoBehaviour
             health.MaxHealth = 100;
         }
         health.Death += Death;
+        LightsChanged += ChangeVisualLightForm;
     }
+    private void ChangeVisualLightForm()
+    {
+        var mesh = Model.GetComponent<MeshRenderer>();
+        if (OnLight) mesh.material = LightMaterial;
+        else mesh.material = DarkMaterial;
+    }
+
     private void Death()
     {
         Destroy(gameObject);
@@ -45,16 +61,32 @@ public class Player : MonoBehaviour
         var vertical = Input.GetAxis("Vertical");
         var space = Input.GetKey(KeyCode.Space);
 
+        if (_onLight != OnLight)
+        {
+            LightsChanged?.Invoke();
+        }
+        _onLight = OnLight;
+
         Timer();
+
+        Dash();
         Attack();
-        Move(vertical, horizontal);
-        RotateTowardMoveDir(vertical, horizontal);
+        if (_attackCooldown <= 0)
+        {
+            Move(vertical, horizontal);
+            RotateTowardMoveDir(vertical, horizontal);
+        }
+        AttackIndicator.transform.localRotation = Quaternion.AngleAxis(-180 * (_attackCooldown * 2), Vector3.up);
     }
 
     private void Timer()
     {
         if (_attackCooldown > 0) _attackCooldown -= Time.deltaTime;
         else if (_attackCooldown <= 0.2) AttackIndicator.SetActive(false);
+        else if (_attackCooldown < 0) _attackCooldown = 0;
+
+        if (_dashCooldown > 0) _dashCooldown -= Time.deltaTime;
+        else if (_dashCooldown < 0) _dashCooldown = 0;
     }
 
     private void Move(float vertical, float horizontal)
@@ -72,10 +104,35 @@ public class Player : MonoBehaviour
             Model.transform.rotation = Quaternion.RotateTowards(Model.transform.rotation, smooth, RotationSpeed * Time.deltaTime);
         }
     }
+    private void RotateTowardMouse()
+    {
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        var hit = new RaycastHit();
+        if (Physics.Raycast(ray, out hit))
+        {
+            var look = Quaternion.LookRotation(hit.point - Model.transform.position);
+            look.x = 0;
+            look.z = 0;
+            Model.transform.rotation = look;
+        }
+        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.cyan);
+    }
+    private void Dash()
+    {
+        if (Input.GetMouseButton(1) && _dashCooldown <= 0)
+        {
+            RotateTowardMouse();
+            _rb.velocity = Model.transform.forward * (Speed * DashModifier);
+            _dashCooldown = 0.5f;
+            _attackCooldown = 0.2f;
+        }
+    }
     private void Attack()
     {
         if (Input.GetMouseButton(0) && _attackCooldown<=0)
         {
+            AttackIndicator.SetActive(false);
+            RotateTowardMouse();
             if (OnLight)
             {
                 Instantiate(Projectile, AttackPoint.position, Model.transform.rotation);
