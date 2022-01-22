@@ -19,7 +19,7 @@ public class LightSourse : MonoBehaviour
             var dir = -transform.forward;
             Ray CheckLightRay = new Ray(Player.Object.transform.position, dir);
             bool res = Physics.Raycast(CheckLightRay);
-            Debug.DrawRay(Player.Object.transform.position, dir, Color.red);
+            Debug.DrawRay(Player.Object.transform.position, dir * 100, Color.red);
             if (!res && !IlluminatePlayer)
             {
                 RaysCount++;

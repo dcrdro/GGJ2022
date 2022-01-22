@@ -5,7 +5,6 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float Speed;
-    public LayerMask EnemyLayers;
     Rigidbody _rb;
     private void Start()
     {
@@ -17,10 +16,7 @@ public class Projectile : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == EnemyLayers.value)
-        {
-            collision.gameObject.GetComponent<HaveHealth>()?.TakeDamage(10);
-            Destroy(gameObject);
-        }
+        collision.gameObject.GetComponent<HaveHealth>()?.TakeDamage(10);
+        Destroy(gameObject);
     }
 }
