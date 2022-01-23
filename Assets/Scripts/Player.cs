@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     private List<PlacePosition> _keyPositions = new List<PlacePosition>();
     public Transform GetEmptyKeyPosition (KeyBlade keyBlade)
     {
+        var Duplicate = _keyPositions.Find(o => o.Blade == keyBlade);
+        if (Duplicate != null) Duplicate.Blade = null;
         var el = _keyPositions.Find(o => o.Blade == null);
         if (el != null)
         {
@@ -109,7 +111,7 @@ public class Player : MonoBehaviour
         {
             if (_keyPositions[i].Blade != null)
             {
-                _keyPositions[i].Transform.position += Vector3.up * Mathf.Sin(Time.unscaledTime + i * 10) / 800;
+                _keyPositions[i].Transform.position += Vector3.up * Mathf.Sin(Time.unscaledTime + i * 10) / 1300;
             }
         }
 

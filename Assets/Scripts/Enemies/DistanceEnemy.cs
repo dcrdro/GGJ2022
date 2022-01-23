@@ -92,11 +92,4 @@ public class DistanceEnemy : MonoBehaviour
             _attackCooldown = 1f;
         }
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject == Player.Object)
-        {
-
-        }
-    }
 }
