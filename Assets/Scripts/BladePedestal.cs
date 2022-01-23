@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BladePedestal : MonoBehaviour
-{
-    private KeyBlade Blade;
+public class BladePedestal : ActivateTrigger
+{ 
+    public KeyBlade Blade;
+    public ActivatorsGroup Group;
 
     public Transform CurrentPoint;
     public Transform StartPoint;
@@ -14,36 +15,61 @@ public class BladePedestal : MonoBehaviour
     public bool ReusableBlade = true;
     public float Distance = 5f;
     public bool ReusablePedestal = false;
-    public bool Activated = false;
 
-    public event Action KeyActivate;
+    private bool _isActivated = false;
+    public override bool IsActivated => _isActivated;
+    private bool _isBladeInserted = false;
+    public override bool IsBladeInserted { get => _isBladeInserted; }
 
+    public override event Action Activated;
+
+    private float Deepth = 1;
+
+    private void Start()
+    {
+        Activated += IsActivatedTrue;
+    }
     void Update()
     {
+        ActivateTrigger activate = Group?.GetComponent<ActivateTrigger>();
         if (Vector3.Distance(transform.position, Player.Object.transform.position) <= Distance)
         {
-            if (Blade == null) Blade = Player.PlayerComponent.GetKeyBlade();
+            if (Blade == null) { Blade = Player.PlayerComponent.GetKeyBlade(); _isBladeInserted = false; }
+            if (Blade !=null)
+            {
+                _isBladeInserted = true;
+                Blade.Postition = CurrentPoint;
 
-            Blade.Postition = CurrentPoint;
 
-            var Deepth = Vector3.Distance(transform.position, Player.Object.transform.position) / Distance;
+                if (ReusableBlade || (Group != null && !Group.IsBladeInserted)) Deepth = Vector3.Distance(transform.position, Player.Object.transform.position) / Distance;
+                else if (Vector3.Distance(transform.position, Player.Object.transform.position) / Distance <= Deepth) Deepth = Vector3.Distance(transform.position, Player.Object.transform.position) / Distance;
+                //else if (Group != null) Deepth = Group.Deepth;
+                
 
-            if (!ReusableBlade) Deepth = Vector3.Distance(transform.position, Player.Object.transform.position) / Distance <= Deepth ? Vector3.Distance(transform.position, Player.Object.transform.position) / Distance : Deepth;
-            else Deepth = Vector3.Distance(transform.position, Player.Object.transform.position) / Distance;
-
-            CurrentPoint.position = Vector3.Lerp(EndPoint.position, StartPoint.position, Deepth);
+                CurrentPoint.position = Vector3.Lerp(EndPoint.position, StartPoint.position, Deepth);
+            }
         }
-        else if (Blade != null && ReusableBlade)
+        else if (Blade != null && (ReusableBlade || (activate != null && !activate.IsActivated)))
         {
             Blade.Postition = Player.PlayerComponent.GetEmptyKeyPosition(Blade);
             Blade = null;
+            _isBladeInserted = false;
+            if (ReusablePedestal)
+            {
+                _isActivated = false;
+            }
         }
     }
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == Player.Object && Blade != null && (!Activated || ReusablePedestal))
+        if ((collision.gameObject == Player.Object && Blade != null) && (!IsActivated || ReusablePedestal) || Group?.IsBladeInserted == true)
         {
-            KeyActivate?.Invoke();
+            Activated?.Invoke();
+            
         }
+    }
+    public void IsActivatedTrue()
+    {
+        _isActivated = true;
     }
 }
