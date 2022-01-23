@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -12,15 +14,20 @@ public class Player : MonoBehaviour
     public Transform AttackPoint;
     public GameObject AttackIndicator;
     public GameObject Projectile;
+    public Slider HPSlider;
+    public Transform Mouse;
 
     public Material DarkMaterial;
     public Material LightMaterial;
 
     public LayerMask EnemyLayers;
+
     public float AttackRange;
     public float Speed = 100f;
     public float RotationSpeed = 420f;
     public float DashModifier = 5f;
+    public float MeleeAttackDamage = 20;
+    public float DistanceAttackDamage = 10;
 
     private bool _onLight;
     public bool OnLight => LightSourse.RaysCount > 0;
@@ -41,6 +48,7 @@ public class Player : MonoBehaviour
             health.MaxHealth = 100;
             health.ToMax();
         }
+        health.slider = HPSlider;
         health.Death += Death;
         LightsChanged += ChangeVisualLightForm;
     }
@@ -70,6 +78,8 @@ public class Player : MonoBehaviour
 
         Timer();
 
+        Mouse.position = Vector3.Lerp(transform.position, MousePos().HasValue ? MousePos().Value.point : Vector3.LerpUnclamped(transform.position, Mouse.position, 1 / 0.02f), 0.02f);
+
         Attack();
 
         if (Dash()) { }
@@ -84,6 +94,16 @@ public class Player : MonoBehaviour
             Move(vertical, horizontal);
             Speed *= 2;
         }
+
+        if (_attackCooldown >= 0.35 && _attackCooldown <= 0.45 && AttackIndicator.activeSelf)
+        {
+            Collider[] HitProjectiles = Physics.OverlapSphere(AttackPoint.position, AttackRange/1.5f);
+            foreach (var Projectile in HitProjectiles)
+            {
+                Projectile.GetComponent<Projectile>()?.Reflect(Model.transform.rotation);
+            }
+        }
+        AttackIndicator.transform.localRotation = Quaternion.AngleAxis(-180 * (_attackCooldown - 0.3f) / 0.2f, Vector3.up);
         AttackIndicator.transform.localRotation = Quaternion.AngleAxis(-180 * (_attackCooldown - 0.3f) / 0.2f, Vector3.up);
     }
 
@@ -113,22 +133,35 @@ public class Player : MonoBehaviour
             Model.transform.rotation = Quaternion.RotateTowards(Model.transform.rotation, smooth, RotationSpeed * Time.deltaTime);
         }
     }
-    private void RotateTowardMouse()
+    private RaycastHit? MousePos()
     {
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         var hit = new RaycastHit();
         if (Physics.Raycast(ray, out hit))
         {
-            var look = Quaternion.LookRotation(hit.point - Model.transform.position);
+            Debug.DrawRay(ray.origin, hit.point - ray.origin, Color.cyan);
+            return hit;
+        }
+        else
+        {
+            return null;
+        }
+        
+    }
+    private void RotateTowardMouse()
+    {
+        var hit = MousePos();
+        if (hit != null)
+        {
+            var look = Quaternion.LookRotation(hit.Value.point - Model.transform.position);
             look.x = 0;
             look.z = 0;
             Model.transform.rotation = look;
         }
-        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.cyan);
     }
     private bool Dash()
     {
-        if (Input.GetMouseButtonDown(1) && _dashCooldown <= 0 && _attackCooldown <= 0)
+        if (Input.GetMouseButtonDown(1) && _dashCooldown <= 0 && _attackCooldown <= 0.3f)
         {
             RotateTowardMouse();
             _rb.velocity = Model.transform.forward * (Speed * DashModifier);
@@ -140,13 +173,13 @@ public class Player : MonoBehaviour
     }
     private void Attack()
     {
-        if (Input.GetMouseButton(0) && _attackCooldown<=0)
+        if (Input.GetMouseButton(0) && _attackCooldown<=0 && _dashCooldown <= 0)
         {
             AttackIndicator.SetActive(false);
             RotateTowardMouse();
             if (OnLight)
             {
-                Instantiate(Projectile, AttackPoint.position, Model.transform.rotation);
+                Instantiate(Projectile, AttackPoint.position, Model.transform.rotation).GetComponent<Projectile>().Damage = DistanceAttackDamage;
                 _attackCooldown = 0.5f;
             }
             else
@@ -156,7 +189,13 @@ public class Player : MonoBehaviour
                 foreach (var Enemy in HitEnemies)
                 {
                     //Debug.Log($"EnemyDetected {Enemy.gameObject.name}");
-                    Enemy.GetComponent<HaveHealth>()?.TakeDamage(10);
+                    Enemy.GetComponent<HaveHealth>()?.TakeDamage(MeleeAttackDamage);
+
+                    Rigidbody EnemyRb;
+                    if (Enemy.gameObject.TryGetComponent<Rigidbody>(out EnemyRb))
+                    {
+                        EnemyRb.velocity = (Enemy.transform.position - transform.position).normalized * 5;
+                    }
                 }
                 _attackCooldown = 0.5f;
             }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DistanceEnemy : MonoBehaviour
 {
-
     public float Speed = 2;
     public float RotateSpeed = 300;
+    public float Damage = 10;
 
     public float MinDistance = 5;
     public float MediumDistance = 15;
@@ -19,25 +19,32 @@ public class DistanceEnemy : MonoBehaviour
 
     private Rigidbody _rb;
     private float _attackCooldown = 0;
+    private float _punchCooldown = 0;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         health = GetComponent<HaveHealth>();
         health.Death += Death;
+        health.Damaged += Damaged;
     }
     private void Death()
     {
         Destroy(gameObject);
     }
+    private void Damaged()
+    {
+        _punchCooldown = 0.2f;
+    }
 
     void Update()
     {
+        if (_punchCooldown > 0) _punchCooldown -= Time.deltaTime;
         Ray SeePlayerRay = new Ray(transform.position, Player.Object.transform.position - transform.position);
         var Hit = new RaycastHit();
         if (Physics.Raycast(SeePlayerRay, out Hit) && Hit.collider.gameObject == Player.Object)
         {
-            if (Vector3.Distance(transform.position, Player.Object.transform.position) <= MaximumDistance && Vector3.Distance(transform.position, Player.Object.transform.position) >= MediumDistance) 
+            if (Vector3.Distance(transform.position, Player.Object.transform.position) <= MaximumDistance && Vector3.Distance(transform.position, Player.Object.transform.position) >= MediumDistance && _punchCooldown <= 0) 
             {
                 RotateToPlayer();
                 MoveTowardPlayer();
@@ -47,7 +54,7 @@ public class DistanceEnemy : MonoBehaviour
                 RotateToPlayer();
                 Shot();
             }
-            else if (Vector3.Distance(transform.position, Player.Object.transform.position) <= MinDistance)
+            else if (Vector3.Distance(transform.position, Player.Object.transform.position) <= MinDistance && _punchCooldown <= 0)
             {
                 RotateAwayFromPlayer();
                 MoveAwayFormPlayer();
@@ -81,8 +88,15 @@ public class DistanceEnemy : MonoBehaviour
     {
         if (_attackCooldown <= 0)
         {
-            Instantiate(Projectile, AttackPoint.position, Model.transform.rotation);
+            Instantiate(Projectile, AttackPoint.position, Model.transform.rotation).GetComponent<Projectile>().Damage = Damage;
             _attackCooldown = 1f;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject == Player.Object)
+        {
+
         }
     }
 }

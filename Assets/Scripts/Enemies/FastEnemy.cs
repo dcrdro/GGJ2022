@@ -11,23 +11,33 @@ public class FastEnemy : MonoBehaviour
 
     public HaveHealth health;
     private Rigidbody _rb;
+    private float _punchCooldown = 0;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         health = GetComponent<HaveHealth>();
         health.Death += Death;
+        health.Damaged += Damaged;
     }
     private void Death()
     {
         Destroy(gameObject);
     }
+    private void Damaged()
+    {
+        _punchCooldown = 0.2f;
+    }
 
     void Update()
     {
+        if(_punchCooldown > 0) _punchCooldown -= Time.deltaTime;
         if (Vector3.Distance(transform.position, Player.Object.transform.position) <= Distance)
         {
             RotateTowardPlayer();
-            Move();
+            if (_punchCooldown <= 0)
+            {
+                Move();
+            }
         }
     }
 

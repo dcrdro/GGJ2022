@@ -5,6 +5,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float Speed;
+    public float Damage;
+    private bool reflected = false;
     Rigidbody _rb;
     private void Start()
     {
@@ -16,7 +18,15 @@ public class Projectile : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        collision.gameObject.GetComponent<HaveHealth>()?.TakeDamage(10);
+        collision.gameObject.GetComponent<HaveHealth>()?.TakeDamage(Damage);
         Destroy(gameObject);
+    }
+    public void Reflect(Quaternion Rotation)
+    {
+        if(!reflected)
+        {
+            transform.rotation = Rotation;
+            reflected = true;
+        }
     }
 }
