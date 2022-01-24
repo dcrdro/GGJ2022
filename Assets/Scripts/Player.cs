@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public static GameObject Object;
     public static Player PlayerComponent;
     public static HaveHealth health;
+    public static bool OnLight => LightSourse.RaysCount > 0;
 
     public GameObject Model;
     public GameObject AttackIndicator;
@@ -68,7 +69,6 @@ public class Player : MonoBehaviour
     public Characteristics characteristics;
 
     private bool _onLight;
-    public bool OnLight => LightSourse.RaysCount > 0;
 
     public event Action LightsChanged;
 
@@ -244,6 +244,14 @@ public class Player : MonoBehaviour
                 }
                 _attackCooldown = 0.5f;
             }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<HealOrb>()!=null)
+        {
+            health.TakeHeal(9);
+            Destroy(other.gameObject);
         }
     }
 }

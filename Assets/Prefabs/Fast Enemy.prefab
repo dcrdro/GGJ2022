@@ -162,6 +162,7 @@ MonoBehaviour:
   Speed: 4.8
   RotateSpeed: 100
   Distance: 10
+  HealOrb: {fileID: 4303580926960168272, guid: 1276a682da7078d4da8ab4f1299327ce, type: 3}
   health: {fileID: 0}
 --- !u!114 &4126582971343592681
 MonoBehaviour:

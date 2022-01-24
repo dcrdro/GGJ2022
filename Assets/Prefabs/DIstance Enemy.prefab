@@ -332,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 3
   RotateSpeed: 200
+  Damage: 10
   MinDistance: 5
   MediumDistance: 10
   MaximumDistance: 30
@@ -339,6 +340,7 @@ MonoBehaviour:
   Projectile: {fileID: 1071069660659017651, guid: 0490c13ef5c20874e89a51ea9b5aedda, type: 3}
   AttackPoint: {fileID: 6040680724730523946}
   Model: {fileID: 6040680724934574362}
+  HealOrb: {fileID: 4303580926960168272, guid: 1276a682da7078d4da8ab4f1299327ce, type: 3}
 --- !u!54 &6040680724785600255
 Rigidbody:
   m_ObjectHideFlags: 0

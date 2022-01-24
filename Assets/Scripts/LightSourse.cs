@@ -40,12 +40,12 @@ public class LightSourse : MonoBehaviour
                 Ray CheckLightRay = new Ray(transform.position, dir);
                 bool res = Physics.Raycast(CheckLightRay, out hit);
                 Debug.DrawRay(transform.position, dir, Color.red);
-                if (hit.collider.gameObject == Player.Object && !IlluminatePlayer)
+                if (res && hit.collider.gameObject == Player.Object && !IlluminatePlayer)
                 {
                     RaysCount++;
                     IlluminatePlayer = true;
                 }
-                else if (hit.collider.gameObject != Player.Object && IlluminatePlayer)
+                else if (res && hit.collider.gameObject != Player.Object && IlluminatePlayer)
                 {
                     RaysCount--;
                     IlluminatePlayer = false;

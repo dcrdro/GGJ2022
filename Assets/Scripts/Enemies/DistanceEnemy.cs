@@ -16,6 +16,7 @@ public class DistanceEnemy : MonoBehaviour
     public GameObject Projectile;
     public Transform AttackPoint;
     public GameObject Model;
+    public GameObject HealOrb;
 
     private Rigidbody _rb;
     private float _attackCooldown = 0;
@@ -30,6 +31,7 @@ public class DistanceEnemy : MonoBehaviour
     }
     private void Death()
     {
+        Instantiate(HealOrb, transform.position, transform.rotation);
         Destroy(gameObject);
     }
     private void Damaged()

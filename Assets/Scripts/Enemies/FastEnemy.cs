@@ -9,9 +9,14 @@ public class FastEnemy : MonoBehaviour
     public float RotateSpeed = 300f;
     public float Distance = 10;
 
+    public GameObject HealOrb;
+
     public HaveHealth health;
     private Rigidbody _rb;
     private float _punchCooldown = 0;
+
+    private Vector3 LastSeen;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -21,6 +26,7 @@ public class FastEnemy : MonoBehaviour
     }
     private void Death()
     {
+        Instantiate(HealOrb, transform.position, transform.rotation);
         Destroy(gameObject);
     }
     private void Damaged()
@@ -31,9 +37,12 @@ public class FastEnemy : MonoBehaviour
     void Update()
     {
         if(_punchCooldown > 0) _punchCooldown -= Time.deltaTime;
-        if (Vector3.Distance(transform.position, Player.Object.transform.position) <= Distance)
+        Ray SeePlayerRay = new Ray(transform.position, Player.Object.transform.position - transform.position);
+        var Hit = new RaycastHit();
+        if (Vector3.Distance(transform.position, Player.Object.transform.position) <= Distance && Physics.Raycast(SeePlayerRay, out Hit))
         {
-            RotateTowardPlayer();
+            LastSeen = Hit.point;
+            RotateTowardLastSeen();
             if (_punchCooldown <= 0)
             {
                 Move();
@@ -46,9 +55,9 @@ public class FastEnemy : MonoBehaviour
         _rb.velocity = transform.forward * Speed;
     }
 
-    private void RotateTowardPlayer()
+    private void RotateTowardLastSeen()
     {
-        var look = Quaternion.LookRotation(Player.Object.transform.position - transform.position);
+        var look = Quaternion.LookRotation(LastSeen - transform.position);
         look.x = 0;
         look.z = 0;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, look, RotateSpeed * Time.deltaTime);
