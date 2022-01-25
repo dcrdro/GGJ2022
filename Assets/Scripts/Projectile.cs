@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public bool CanReflect = true;
     public float Speed;
     public float Damage;
     private bool reflected = false;
@@ -23,7 +24,7 @@ public class Projectile : MonoBehaviour
     }
     public void Reflect(Quaternion Rotation)
     {
-        if(!reflected)
+        if(CanReflect && !reflected)
         {
             transform.rotation = Rotation;
             reflected = true;

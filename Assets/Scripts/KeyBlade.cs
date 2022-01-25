@@ -18,10 +18,10 @@ public class KeyBlade : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Postition.rotation, FlyRotationSpeed * Time.deltaTime);
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         GetComponent<Collider>().enabled = false;
-        if (collision.gameObject == Player.Object)
+        if (other.gameObject == Player.Object)
         {
             Postition = Player.PlayerComponent.GetEmptyKeyPosition(this);
         }

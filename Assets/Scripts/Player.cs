@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public Transform AttackPoint;
     public Transform Mouse;
 
+    #region Keyblades
     [Serializable]
     public class PlacePosition
     {
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour
         }
         else return null;
     }
+    #endregion
 
     public Slider HPSlider;
     public Material DarkMaterial;
@@ -74,7 +76,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody _rb;
     private float _attackCooldown = 0;
-    private float _dashCooldown = 0;
+    public float _dashCooldown { get; private set; } = 0;
 
     void Start()
     {
@@ -184,7 +186,7 @@ public class Player : MonoBehaviour
         var hit = new RaycastHit();
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.DrawRay(ray.origin, hit.point - ray.origin, Color.cyan);
+            Debug.DrawRay(ray.origin, ray.direction * 1000, Color.cyan);
             return hit;
         }
         else
@@ -198,7 +200,10 @@ public class Player : MonoBehaviour
         var hit = MousePos();
         if (hit != null)
         {
-            var look = Quaternion.LookRotation(hit.Value.point - Model.transform.position);
+            var From = new Vector3(Model.transform.position.x, Model.transform.position.y, Model.transform.position.z);
+            var to = new Vector3(hit.Value.point.x, Model.transform.position.y, hit.Value.point.z);
+            Debug.DrawLine(Model.transform.position, hit.Value.point, Color.red, 3);
+            var look = Quaternion.LookRotation(to - From);
             look.x = 0;
             look.z = 0;
             Model.transform.rotation = look;
@@ -209,7 +214,8 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && _dashCooldown <= 0 && _attackCooldown <= 0.3f)
         {
             RotateTowardMouse();
-            _rb.velocity = Model.transform.forward * (characteristics.Speed * characteristics.DashModifier);
+            var speed = characteristics.Speed * characteristics.DashModifier;
+            _rb.velocity = new Vector3(Model.transform.forward.x * speed, _rb.velocity.y, Model.transform.forward.z * speed);
             _dashCooldown = 0.5f;
             _attackCooldown = 0.2f;
             return true;

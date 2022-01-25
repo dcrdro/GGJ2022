@@ -9,7 +9,7 @@ public class HaveHealth : MonoBehaviour
     public float MaxHealth = 0f;
     public float CurHealth = 0f;
     public event Action Death;
-    public event Action Damaged;
+    public event Action<float> Damaged;
     public Slider slider;
 
     public virtual void ToMax()
@@ -26,7 +26,7 @@ public class HaveHealth : MonoBehaviour
     public virtual void TakeDamage(float Damage)
     {
         TakeHeal(-Damage);
-        Damaged?.Invoke();
+        Damaged?.Invoke(Damage);
         CheckDeath();
     }
     private void CheckDeath()

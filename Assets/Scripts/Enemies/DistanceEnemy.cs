@@ -34,7 +34,7 @@ public class DistanceEnemy : MonoBehaviour
         Instantiate(HealOrb, transform.position, transform.rotation);
         Destroy(gameObject);
     }
-    private void Damaged()
+    private void Damaged(float _)
     {
         _punchCooldown = 0.2f;
     }
