@@ -5,17 +5,17 @@ using UnityEngine;
 public class MoveWall : MonoBehaviour
 {
     public Transform Wall;
-    public ActivateTrigger Pedestal;
     public Transform ToPosition;
     public float Speed;
+    public int NeedsToOpen;
     public bool Open = false;
 
-    private void Start()
-    {
-        Pedestal.Activated += Activated;
-    }
     void Update()
     {
+        if (BladePedestal.ActivatedCount >= NeedsToOpen && !Open)
+        {
+            Activated();
+        }
         if (Open)
         {
             Wall.transform.position = Vector3.MoveTowards(Wall.transform.position, ToPosition.position, Speed * Time.deltaTime);

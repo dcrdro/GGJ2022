@@ -103,6 +103,7 @@ public class Player : MonoBehaviour
 
     private void Death()
     {
+        SceneManager.LoadScene(0);
         Destroy(gameObject);
     }
     // Update is called once per frame

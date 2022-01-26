@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BladePedestal : ActivateTrigger
-{ 
+{
+    public static int ActivatedCount = 0;
     public KeyBlade Blade;
     public ActivatorsGroup Group;
 
@@ -23,7 +24,7 @@ public class BladePedestal : ActivateTrigger
 
     public override event Action Activated;
 
-    private float Deepth = 1;
+    public float Deepth = 0;
 
     private void Start()
     {
@@ -65,11 +66,11 @@ public class BladePedestal : ActivateTrigger
         if ((collision.gameObject == Player.Object && Blade != null) && (!IsActivated || ReusablePedestal) || Group?.IsBladeInserted == true)
         {
             Activated?.Invoke();
-            
         }
     }
     public void IsActivatedTrue()
     {
+        ActivatedCount++;
         _isActivated = true;
     }
 }

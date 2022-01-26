@@ -10,6 +10,7 @@ public class MoveSliderWall : MonoBehaviour
     public Transform EndPos;
     public float Speed;
     public bool Open = false;
+    public int NeedsToOpen;
 
     private void Start()
     {
@@ -17,6 +18,10 @@ public class MoveSliderWall : MonoBehaviour
     }
     void Update()
     {
+        if (BladePedestal.ActivatedCount >= NeedsToOpen && !Open)
+        {
+            Open = true;
+        }
         if (Open)
         {
             Wall.transform.position = Vector3.MoveTowards(Wall.transform.position, EndPos.position, Speed * Time.deltaTime);
@@ -28,6 +33,6 @@ public class MoveSliderWall : MonoBehaviour
     }
     private void Activated()
     {
-        Open = !Open;
+        Open = false;
     }
 }

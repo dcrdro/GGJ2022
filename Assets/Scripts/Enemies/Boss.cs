@@ -24,6 +24,7 @@ public class Boss : MonoBehaviour
     }
     private void Death()
     {
+        BladePedestal.ActivatedCount++;
         Destroy(gameObject);
     }
     
@@ -179,7 +180,6 @@ public class Boss : MonoBehaviour
                 DefendIndicator.material = Player.PlayerComponent.DarkMaterial;
                 break;
         }
-        yield return new WaitForSeconds(WaitSeconds);
         Attack?.Invoke();
         yield return new WaitForSeconds(15);
         ImmuneToForm = Form.None;

@@ -20,11 +20,4 @@ public class ActivateZone : ActivateTrigger
             _isActivated = true;
         }
     }
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject == Player.Object)
-        {
-            _isActivated = false;
-        }
-    }
 }
