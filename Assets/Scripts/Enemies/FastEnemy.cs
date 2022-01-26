@@ -14,6 +14,7 @@ public class FastEnemy : MonoBehaviour
     public HaveHealth health;
     private Rigidbody _rb;
     private float _punchCooldown = 0;
+    private float _scanCooldown = 0;
 
     private Vector3 LastSeen;
 
@@ -41,7 +42,12 @@ public class FastEnemy : MonoBehaviour
         var Hit = new RaycastHit();
         if (Vector3.Distance(transform.position, Player.Object.transform.position) <= Distance && Physics.Raycast(SeePlayerRay, out Hit))
         {
-            LastSeen = Hit.point;
+            if (_scanCooldown > 0) _scanCooldown -= Time.deltaTime;
+            if (Hit.collider.gameObject == Player.Object && _scanCooldown <= 0)
+            {
+                LastSeen = Hit.point;
+                _scanCooldown = 0.5f;
+            }
             RotateTowardLastSeen();
             if (_punchCooldown <= 0)
             {
