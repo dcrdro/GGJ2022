@@ -183,7 +183,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57566720}
-  m_LocalRotation: {x: 0.59227633, y: -0.00000003100036, z: 0.000000022787619, w: 0.80573493}
+  m_LocalRotation: {x: 0.59227633, y: 0.000000031000354, z: -0.000000022787614, w: 0.80573493}
   m_LocalPosition: {x: -108.8, y: 11.85, z: -89.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -667,7 +667,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549231178}
-  m_LocalRotation: {x: 0.59227633, y: -0.00000003100036, z: 0.000000022787619, w: 0.80573493}
+  m_LocalRotation: {x: 0.59227633, y: 0.000000031000354, z: -0.000000022787614, w: 0.80573493}
   m_LocalPosition: {x: -108.8, y: 11.85, z: -89.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -969,8 +969,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 739164703}
     m_Modifications:
     - target: {fileID: 606794325051596178, guid: 9e3c50e9a312d9b4794b06bbdbf9645c, type: 3}
+      propertyPath: WalkSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 606794325051596178, guid: 9e3c50e9a312d9b4794b06bbdbf9645c, type: 3}
       propertyPath: DashVelocity
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 606794325051596178, guid: 9e3c50e9a312d9b4794b06bbdbf9645c, type: 3}
+      propertyPath: RotationSpeed
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 606794325051596178, guid: 9e3c50e9a312d9b4794b06bbdbf9645c, type: 3}
       propertyPath: CenterPosition

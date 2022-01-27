@@ -9,18 +9,14 @@ public class Boss : MonoBehaviour
     public HaveHealth health;
     private Rigidbody _rb;
     private Collider _collider;
-    public event Action Attack;
-    public MeshRenderer DefendIndicator;
-    public float WaitSeconds = 4;
 
     private void Start()
     {
         LineRay.enabled = false;
         health = GetComponent<HaveHealth>();
         health.Death += Death;
-        health.Damaged += Damaged;
-        ActivateTrigger.Activated += SpecialAttack;
-        Attack += SpecialAttack;
+        ActivateTrigger.Activated += Activated;
+        Attack += Wait;
         _rb = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
     }
@@ -29,10 +25,15 @@ public class Boss : MonoBehaviour
         BladePedestal.ActivatedCount++;
         Destroy(gameObject);
     }
-
-    public void SpecialAttack()
+    public void Activated()
     {
-        var rand = UnityEngine.Random.Range(0, 4);
+        Player.PlayerComponent.Boss = gameObject;
+        StartCoroutine(SpecialAttack());
+    }
+
+    IEnumerator SpecialAttack()
+    {
+        var rand = UnityEngine.Random.Range(0, 3);
         switch (rand)
         {
             case 0:
@@ -44,19 +45,34 @@ public class Boss : MonoBehaviour
             case 2:
                 StartCoroutine(DeathRay());
                 break;
-            case 3:
-                if (ImmuneToForm == Form.None)
-                {
-                    StartCoroutine(Immune());
-                }
-                else
-                {
-                    Attack?.Invoke();
-                }
-                break;
         }
-
+        yield return null;
     }
+
+    #region Circle Walk
+    public float RotationSpeed = 300;
+    public float WalkSpeed = 4;
+    public float WaitSeconds = 4;
+    public event Action Attack;
+
+    void Wait()
+    {
+        StartCoroutine(CircleWalk());
+    }
+    IEnumerator CircleWalk()
+    {
+        var clockwise = UnityEngine.Random.Range(0, 2);
+        var Timer = WaitSeconds;
+        while (Timer > 0)
+        {
+            RotateTowardPlayer();
+            _rb.velocity =  -transform.right * WalkSpeed * (clockwise == 0 ? -1 : 1);
+            Timer -= Time.deltaTime;
+            yield return null;
+        }
+        StartCoroutine(SpecialAttack());
+    }
+    #endregion
 
     #region Dash Attack (0)
     public Transform RaycastPosition;
@@ -90,7 +106,6 @@ public class Boss : MonoBehaviour
         RotateAwayFromPlayer();
         Dash();
         AttackBody = false;
-        yield return new WaitForSeconds(WaitSeconds);
         Attack?.Invoke();
     }
     private IEnumerator Dash()
@@ -152,6 +167,7 @@ public class Boss : MonoBehaviour
 
     IEnumerator SpikeAttack()
     {
+        _rb.velocity = Vector3.zero;
         transform.position = new Vector3(CenterPosition.position.x, CenterPosition.position.y + 3, CenterPosition.position.z);
         yield return new WaitForSeconds(1);
         for (int i = 0; i < 360 / 15 + 1; i++)
@@ -159,7 +175,7 @@ public class Boss : MonoBehaviour
             Instantiate(BossProjectile, ProjectilePosition.position, ProjectilePosition.rotation);
             transform.rotation = Quaternion.AngleAxis(i * 15, Vector3.up);
         }
-        yield return new WaitForSeconds(WaitSeconds);
+        yield return new WaitForSeconds(1);
         Attack?.Invoke();
     }
     #endregion
@@ -189,48 +205,9 @@ public class Boss : MonoBehaviour
             yield return null;
         }
         LineRay.enabled = false;
-        yield return new WaitForSeconds(WaitSeconds);
         Attack?.Invoke();
     }
     #endregion
-
-    #region Immune Form (3)
-    enum Form
-    {
-        None,
-        Light,
-        Dark
-    }
-    private Form ImmuneToForm = Form.None;
-    private void Damaged(float Damage)
-    {
-        if ((ImmuneToForm == Form.Light && Player.OnLight) ||
-            (ImmuneToForm == Form.Dark && !Player.OnLight))
-        {
-            health.TakeHeal(Damage);
-            _rb.velocity = Vector3.zero;
-        }
-    }
-    IEnumerator Immune()
-    {
-        DefendIndicator.enabled = true;
-        switch (UnityEngine.Random.Range(0, 2))
-        {
-            case 0:
-                ImmuneToForm = Form.Light;
-                DefendIndicator.material = Player.PlayerComponent.LightMaterial;
-                break;
-            case 1:
-                ImmuneToForm = Form.Dark;
-                DefendIndicator.material = Player.PlayerComponent.DarkMaterial;
-                break;
-        }
-        Attack?.Invoke();
-        yield return new WaitForSeconds(15);
-        ImmuneToForm = Form.None;
-        DefendIndicator.enabled = false;
-    }
-    #endregion 
 
     private void RotateTowardPosition(Vector3 position)
     {

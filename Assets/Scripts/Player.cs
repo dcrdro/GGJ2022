@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public GameObject Model;
     public GameObject AttackIndicator;
     public GameObject Projectile;
+    [NonSerialized]
+    public GameObject Boss;
 
     public Transform AttackPoint;
     public Transform Mouse;
@@ -129,7 +131,8 @@ public class Player : MonoBehaviour
 
         Timer();
 
-        Mouse.position = Vector3.Lerp(transform.position, MousePos().HasValue ? MousePos().Value.point : Vector3.LerpUnclamped(transform.position, Mouse.position, 1 / 0.02f), 0.02f);
+        if (Boss == null) Mouse.position = Vector3.Lerp(transform.position, MousePos().HasValue ? MousePos().Value.point : Vector3.LerpUnclamped(transform.position, Mouse.position, 1 / 0.02f), 0.02f);
+        else Mouse.position = Vector3.Lerp(transform.position, Boss.transform.position, 0.2f);
 
         Attack();
 
