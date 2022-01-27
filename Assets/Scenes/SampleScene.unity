@@ -970,7 +970,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 606794325051596178, guid: 9e3c50e9a312d9b4794b06bbdbf9645c, type: 3}
       propertyPath: WalkSpeed
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 606794325051596178, guid: 9e3c50e9a312d9b4794b06bbdbf9645c, type: 3}
       propertyPath: DashVelocity
