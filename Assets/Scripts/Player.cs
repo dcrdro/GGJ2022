@@ -104,6 +104,8 @@ public class Player : MonoBehaviour
     private void Death()
     {
         SceneManager.LoadScene(0);
+        BladePedestal.ActivatedCount = 0;
+        LightSourse.RaysCount = 0;
         Destroy(gameObject);
     }
     // Update is called once per frame
@@ -204,7 +206,6 @@ public class Player : MonoBehaviour
         {
             var From = new Vector3(Model.transform.position.x, Model.transform.position.y, Model.transform.position.z);
             var to = new Vector3(hit.Value.point.x, Model.transform.position.y, hit.Value.point.z);
-            Debug.DrawLine(Model.transform.position, hit.Value.point, Color.red, 3);
             var look = Quaternion.LookRotation(to - From);
             look.x = 0;
             look.z = 0;

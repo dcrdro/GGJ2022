@@ -19,9 +19,9 @@ public class Spike : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == Player.Object && Player.PlayerComponent._dashCooldown <= 0)
+        if (other.gameObject == Player.Object && Player.PlayerComponent._dashCooldown <= 0.1)
         {
-            Player.health.TakeDamage(10);
+            Player.health.TakeDamage(5);
         }
     }
 }
