@@ -5,25 +5,44 @@ using UnityEngine;
 public class Menu : MonoBehaviour
 {
     public GameObject PauseMenu;
+    public GameObject WinMenu;
+    public ActivateTrigger Trigger;
     private bool Active;
+    private bool Win = false;
 
+    private void Start()
+    {
+        Trigger.Activated += YouWin;
+    }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!Active)
+            if (!Win)
             {
-                PauseMenu.SetActive(true);
-                Active = true;
-                Time.timeScale = 0;
+                if (!Active)
+                {
+                    PauseMenu.SetActive(true);
+                    Active = true;
+                    Time.timeScale = 0;
+                }
+                else
+                {
+                    Continue();
+                }
             }
             else
             {
-                Continue();
+                Quit();
             }
         }
     }
-
+    public void YouWin()
+    {
+        WinMenu.SetActive(true);
+        Win = true;
+        Time.timeScale = 0;
+    }
     public void Continue()
     {
         PauseMenu.SetActive(false);

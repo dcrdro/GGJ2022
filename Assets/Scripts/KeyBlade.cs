@@ -9,6 +9,8 @@ public class KeyBlade : MonoBehaviour
     public Transform Postition;
     public float FlySpeed = 10f;
     public float FlyRotationSpeed = 300f;
+    public event Action PickedUp; 
+
 
     private void Update()
     {
@@ -24,6 +26,7 @@ public class KeyBlade : MonoBehaviour
         if (other.gameObject == Player.Object)
         {
             Postition = Player.PlayerComponent.GetEmptyKeyPosition(this);
+            PickedUp?.Invoke();
         }
         else GetComponent<Collider>().enabled = true;
     }
