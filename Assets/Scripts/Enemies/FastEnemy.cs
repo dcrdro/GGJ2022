@@ -9,14 +9,15 @@ public class FastEnemy : MonoBehaviour
     public float RotateSpeed = 300f;
     public float Distance = 10;
 
-    public GameObject HealOrb;
-
     public HaveHealth health;
     private Rigidbody _rb;
     private float _punchCooldown = 0;
     private float _scanCooldown = 0;
+    private float _runOffTimer = 0;
 
     private Vector3 LastSeen;
+
+    public event Action Attacked;
 
     void Start()
     {
@@ -24,10 +25,10 @@ public class FastEnemy : MonoBehaviour
         health = GetComponent<HaveHealth>();
         health.Death += Death;
         health.Damaged += Damaged;
+        Attacked += WhenAttacked;
     }
     private void Death()
     {
-        Instantiate(HealOrb, transform.position, transform.rotation);
         Destroy(gameObject);
     }
     private void Damaged(float _)
@@ -48,9 +49,9 @@ public class FastEnemy : MonoBehaviour
                 LastSeen = Hit.point;
                 _scanCooldown = 0.5f;
             }
-            RotateTowardLastSeen();
-            if (_punchCooldown <= 0)
+            if (_punchCooldown <= 0 && _runOffTimer <= 0)
             {
+                RotateTowardLastSeen();
                 Move();
             }
         }
@@ -68,12 +69,38 @@ public class FastEnemy : MonoBehaviour
         look.z = 0;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, look, RotateSpeed * Time.deltaTime);
     }
+    private void RotateAwayFromPlayer()
+    {
+        var look = Quaternion.Inverse(Quaternion.LookRotation(Player.Object.transform.position - transform.position));
+        look.x = 0;
+        look.z = 0;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, look, RotateSpeed * Time.deltaTime); ;
+    }
+
+    private void WhenAttacked()
+    {
+        StartCoroutine(RunOff());
+    }
+
+    IEnumerator RunOff()
+    {
+        _runOffTimer = 1;
+        while (_runOffTimer > 0)
+        {
+            RotateAwayFromPlayer();
+            Move();
+            _runOffTimer -= Time.deltaTime;
+            yield return null;
+        }
+        
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject == Player.Object)
         {
             Player.health.TakeDamage(10);
+            Attacked?.Invoke();
         }
     }
 }

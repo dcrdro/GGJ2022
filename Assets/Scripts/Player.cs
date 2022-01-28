@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     }
     [SerializeField]
     private List<PlacePosition> _keyPositions = new List<PlacePosition>();
-    public Transform GetEmptyKeyPosition (KeyBlade keyBlade)
+    public Transform GetEmptyKeyPosition(KeyBlade keyBlade)
     {
         var Duplicate = _keyPositions.Find(o => o.Blade == keyBlade);
         if (Duplicate != null) Duplicate.Blade = null;
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     }
     public KeyBlade GetKeyBlade()
     {
-        var el = _keyPositions.FindLast(o => o.Blade != null); 
+        var el = _keyPositions.FindLast(o => o.Blade != null);
         if (el != null)
         {
             var blade = el.Blade;
@@ -105,10 +105,8 @@ public class Player : MonoBehaviour
 
     private void Death()
     {
-        SceneManager.LoadScene(0);
-        BladePedestal.ActivatedCount = 0;
         LightSourse.RaysCount = 0;
-        Destroy(gameObject);
+        SceneManager.LoadScene(0);
     }
     // Update is called once per frame
     void Update()
@@ -149,9 +147,9 @@ public class Player : MonoBehaviour
             characteristics.Speed *= 2;
         }
 
-        if (_attackCooldown >= 0.35 && _attackCooldown <= 0.45 && AttackIndicator.activeSelf)
+        if (_attackCooldown >= 0.3 && AttackIndicator.activeSelf)
         {
-            Collider[] HitProjectiles = Physics.OverlapSphere(AttackPoint.position, characteristics.AttackRange /1.5f);
+            Collider[] HitProjectiles = Physics.OverlapSphere(AttackPoint.position, characteristics.AttackRange / 1.5f);
             foreach (var Projectile in HitProjectiles)
             {
                 Projectile.GetComponent<Projectile>()?.Reflect(Model.transform.rotation);
@@ -165,7 +163,7 @@ public class Player : MonoBehaviour
     {
         if (_attackCooldown > 0) _attackCooldown -= Time.deltaTime;
         else if (_attackCooldown < 0) _attackCooldown = 0;
-        
+
         if (_attackCooldown <= 0.3) AttackIndicator.SetActive(false);
 
         if (_dashCooldown > 0) _dashCooldown -= Time.deltaTime;
@@ -200,7 +198,7 @@ public class Player : MonoBehaviour
         {
             return null;
         }
-        
+
     }
     private void RotateTowardMouse()
     {
@@ -230,13 +228,20 @@ public class Player : MonoBehaviour
     }
     private void Attack()
     {
-        if (Input.GetMouseButton(0) && _attackCooldown<=0 && _dashCooldown <= 0)
+        if (Input.GetMouseButton(0) && _attackCooldown <= 0 && _dashCooldown <= 0)
         {
             AttackIndicator.SetActive(false);
             RotateTowardMouse();
             if (OnLight)
             {
-                Instantiate(Projectile, AttackPoint.position, Model.transform.rotation).GetComponent<Projectile>().Damage = characteristics.DistanceAttackDamage;
+                var projectile = Instantiate(Projectile, AttackPoint.position, Model.transform.rotation).GetComponent<Projectile>();
+                projectile.Damage = characteristics.DistanceAttackDamage;
+                projectile.TriggerEnter += (sender, Damage, collider) =>
+                {
+                    var Hp = collider.gameObject.GetComponent<HaveHealth>();
+                    if (Hp != null) Hp.TakeDamage(characteristics.DistanceAttackDamage);
+                    else Destroy(sender);
+                };
                 _attackCooldown = 0.5f;
             }
             else
@@ -256,14 +261,6 @@ public class Player : MonoBehaviour
                 }
                 _attackCooldown = 0.5f;
             }
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.GetComponent<HealOrb>()!=null)
-        {
-            health.TakeHeal(9);
-            Destroy(other.gameObject);
         }
     }
 }

@@ -29,7 +29,14 @@ public class BladePedestal : ActivateTrigger
     private void Start()
     {
         Activated += IsActivatedTrue;
+        Player.health.Death += PlayerDeath;
     }
+
+    private void PlayerDeath()
+    {
+        ActivatedCount = 0;
+    }
+
     void Update()
     {
         ActivateTrigger activate = Group?.GetComponent<ActivateTrigger>();

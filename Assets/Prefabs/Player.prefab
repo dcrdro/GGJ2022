@@ -377,7 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Model: {fileID: 5373300788017683044}
   AttackIndicator: {fileID: 5373300789388732397}
-  Projectile: {fileID: 1071069660659017651, guid: 0490c13ef5c20874e89a51ea9b5aedda, type: 3}
+  Projectile: {fileID: 7313670429273453597, guid: b2120787ab34f7f458942f933f183590, type: 3}
   AttackPoint: {fileID: 5373300788420628520}
   Mouse: {fileID: 5373300788714555771}
   _keyPositions:
@@ -401,7 +401,7 @@ MonoBehaviour:
     RotationSpeed: 420
     DashModifier: 5
     MeleeAttackDamage: 20
-    DistanceAttackDamage: 10
+    DistanceAttackDamage: 20
 --- !u!1 &5373300789848138165
 GameObject:
   m_ObjectHideFlags: 0

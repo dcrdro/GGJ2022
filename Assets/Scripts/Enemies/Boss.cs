@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour
     public HaveHealth health;
     private Rigidbody _rb;
     private Collider _collider;
+    public LayerMask ObstacleLayers;
 
     private void Start()
     {
@@ -78,7 +79,6 @@ public class Boss : MonoBehaviour
     public Transform RaycastPosition;
     public Transform Crown;
     public float CrownRotationSpeed = 5;
-    public LayerMask ObstacleLayers;
     public int DashVelocity = 6;
     private bool AttackBody = false;
     private bool _rotateCrown = false;
@@ -172,7 +172,14 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(1);
         for (int i = 0; i < 360 / 15 + 1; i++)
         {
-            Instantiate(BossProjectile, ProjectilePosition.position, ProjectilePosition.rotation);
+            var projectile = Instantiate(BossProjectile, ProjectilePosition.position, ProjectilePosition.rotation).GetComponent<Projectile>();
+            projectile.TriggerEnter += (sender, _, Collider) =>
+            {
+                if (Collider.gameObject.layer == ObstacleLayers.value)
+                {
+                    Destroy(sender);
+                }
+            };
             transform.rotation = Quaternion.AngleAxis(i * 15, Vector3.up);
         }
         yield return new WaitForSeconds(1);

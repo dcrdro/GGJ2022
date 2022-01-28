@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,10 @@ public class Projectile : MonoBehaviour
     public float Damage;
     private bool reflected = false;
     Rigidbody _rb;
+
+    public event Action<GameObject, float, Collision> CollisionEnter;
+    public event Action<GameObject, float, Collider> TriggerEnter;
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -19,8 +24,11 @@ public class Projectile : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        collision.gameObject.GetComponent<HaveHealth>()?.TakeDamage(Damage);
-        Destroy(gameObject);
+        CollisionEnter?.Invoke(gameObject, Damage, collision);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        TriggerEnter?.Invoke(gameObject, Damage, other);
     }
     public void Reflect(Quaternion Rotation)
     {

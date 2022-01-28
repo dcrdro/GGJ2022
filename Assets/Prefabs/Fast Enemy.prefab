@@ -160,9 +160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 4.8
-  RotateSpeed: 300
-  Distance: 10
-  HealOrb: {fileID: 4303580926960168272, guid: 1276a682da7078d4da8ab4f1299327ce, type: 3}
+  RotateSpeed: 400
+  Distance: 15
   health: {fileID: 0}
 --- !u!114 &4126582971343592681
 MonoBehaviour:
