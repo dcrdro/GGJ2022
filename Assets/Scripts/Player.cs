@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
     public Slider HPSlider;
     public Material DarkMaterial;
     public Material LightMaterial;
+    public SkinnedMeshRenderer MeshRenderer;
 
     public LayerMask EnemyLayers;
 
@@ -100,9 +101,8 @@ public class Player : MonoBehaviour
     }
     private void ChangeVisualLightForm()
     {
-        var mesh = Model.GetComponent<MeshRenderer>();
-        if (OnLight) mesh.material = LightMaterial;
-        else mesh.material = DarkMaterial;
+        if (OnLight) MeshRenderer.material = LightMaterial;
+        else MeshRenderer.material = DarkMaterial;
     }
 
     private void Death()
