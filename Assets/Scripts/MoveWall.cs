@@ -9,6 +9,12 @@ public class MoveWall : MonoBehaviour
     public float Speed;
     public int NeedsToOpen;
     public bool Open = false;
+    private AudioSource AudioS;
+
+    void Start()
+    {
+        AudioS = GetComponent<AudioSource> ();
+    }
 
     void Update()
     {
@@ -24,5 +30,8 @@ public class MoveWall : MonoBehaviour
     private void Activated()
     {
         Open = true;
+        AudioS.Play();
     }
+
+   
 }
