@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 9c0d83d507a62d84a841efd3ad84b602
+guid: b6c6caeb2c38f434a8813df3194474fa
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: 6975084725166020838
-    second: Atack
+    second: Atack range
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -45,7 +45,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Atack
+      name: Atack range
       takeName: Atack
       internalID: 0
       firstFrame: 1
@@ -68,18 +68,11 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.61156684
-        functionName: OnPlayerAttackEnded
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0.96
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -471,13 +464,13 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Anim_Atack(Clone)
+    - name: _____tmp______Anim_RangeAtack(Clone)
       parentName: 
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:Pelvis_JNT
-      parentName: Anim_Atack(Clone)
+      parentName: _____tmp______Anim_RangeAtack(Clone)
       position: {x: -0.0009000326, y: 0.93678033, z: -0.0923625}
       rotation: {x: 0.40934345, y: -0.4358285, z: -0.4965707, w: 0.629213}
       scale: {x: 1, y: 1, z: 1}
