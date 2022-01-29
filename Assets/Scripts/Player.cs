@@ -174,7 +174,7 @@ public class Player : MonoBehaviour
         var direction = new Vector2(horizontal * characteristics.Speed, vertical * characteristics.Speed);
 
         _rb.velocity = new Vector3(direction.x, _rb.velocity.y, direction.y);
-        _animator.SetBool("IsMoving", vertical * horizontal > 0.001f);
+        _animator.SetBool("IsMoving", Mathf.Abs(vertical) + Mathf.Abs(horizontal) > 0.01f);
     }
     private void RotateTowardMoveDir(float vertical, float horizontal)
     {
