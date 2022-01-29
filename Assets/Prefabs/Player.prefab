@@ -715,3 +715,18 @@ MonoBehaviour:
   DistanceEnemy: {fileID: 0}
   FastEnemy: {fileID: 0}
   Player: {fileID: 5373300789523532630}
+--- !u!114 &2486549206942683884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248880259520480202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9389be00fa2a942cca3dfc19cd6d7c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StepSound:
+  - {fileID: 8300000, guid: 6d7755b3470694d22a02576c1c797e20, type: 3}
+  SprintSound: []
