@@ -11,10 +11,12 @@ public class MoveSliderWall : MonoBehaviour
     public float Speed;
     public bool Open = false;
     public int NeedsToOpen;
+    private AudioSource AudioS;
 
     private void Start()
     {
         Pedestal.Activated += Activated;
+        AudioS = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -34,5 +36,6 @@ public class MoveSliderWall : MonoBehaviour
     private void Activated()
     {
         Open = false;
+        AudioS.Play();
     }
 }
