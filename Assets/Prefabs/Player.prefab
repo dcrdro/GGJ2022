@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaef18f0d487c114c81d786d704ca607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Model: {fileID: 5204757130317818305}
+  Model: {fileID: 678694460156999020}
   Projectile: {fileID: 7313670429273453597, guid: b2120787ab34f7f458942f933f183590, type: 3}
   AttackPoint: {fileID: 5373300788420628520}
   Mouse: {fileID: 5373300788714555771}
@@ -512,7 +512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1672423201018323663, guid: 83725aa6e10f12d46a29f47bc0ec6fac, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.335
       objectReference: {fileID: 0}
     - target: {fileID: 1672423201018323663, guid: 83725aa6e10f12d46a29f47bc0ec6fac, type: 3}
       propertyPath: m_LocalRotation.w
