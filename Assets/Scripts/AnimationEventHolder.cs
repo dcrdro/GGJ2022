@@ -5,6 +5,7 @@ public class AnimationEventHolder : MonoBehaviour
 {
     public DistanceEnemy DistanceEnemy;
     public FastEnemy FastEnemy;
+    public Player Player;
     
     public void OnShotProjectile()
     {
@@ -20,5 +21,13 @@ public class AnimationEventHolder : MonoBehaviour
         {
             FastEnemy.EndAttack();
         }
-    }        
+    }  
+    
+    public void OnPlayerAttackEnded()
+    {
+        if (Player)
+        {
+            Player.EndMeleeAttack();
+        }
+    } 
 }

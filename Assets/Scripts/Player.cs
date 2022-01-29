@@ -73,16 +73,13 @@ public class Player : MonoBehaviour
     }
     public Characteristics characteristics;
 
-    public AudioClip RangeAttackSound;
-    public AudioClip MeleeAttackSound;
-    
     private bool _onLight;
 
     public event Action LightsChanged;
 
     private Rigidbody _rb;
     private Animator _animator;
-    private AudioSource _audioSource;
+    private PlayerAudioController _audioController;
     private float _attackCooldown = 0;
     public float _dashCooldown { get; private set; } = 0;
 
@@ -100,7 +97,7 @@ public class Player : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
-        _audioSource = GetComponentInChildren<AudioSource>();
+        _audioController = GetComponentInChildren<PlayerAudioController>();
         Object = gameObject;
         PlayerComponent = this;
         health.Death += Death;
@@ -243,35 +240,41 @@ public class Player : MonoBehaviour
                 projectile.TriggerEnter += (sender, Damage, collider) =>
                 {
                     var Hp = collider.gameObject.GetComponent<HaveHealth>();
-                    if (Hp != null) Hp.TakeDamage(characteristics.DistanceAttackDamage);
+                    if (Hp != null)
+                    {
+                        Hp.TakeDamage(characteristics.DistanceAttackDamage);
+                        _audioController.PlayRangeHitShotAttack();
+                    }
                     else if (!collider.isTrigger) Destroy(sender);
                 };
                 _attackCooldown = 0.5f;
                 
                 _animator.SetTrigger("AttackRange");
-                _audioSource.clip = RangeAttackSound;
-                _audioSource.Play();
+                _audioController.PlayRangePreShotAttack();
             }
             else
             {
-                Collider[] HitEnemies = Physics.OverlapSphere(AttackPoint.position, characteristics.AttackRange, EnemyLayers);
-                foreach (var Enemy in HitEnemies)
-                {
-                    //Debug.Log($"EnemyDetected {Enemy.gameObject.name}");
-                    Enemy.GetComponent<HaveHealth>()?.TakeDamage(characteristics.MeleeAttackDamage);
-
-                    Rigidbody EnemyRb;
-                    if (Enemy.gameObject.TryGetComponent<Rigidbody>(out EnemyRb))
-                    {
-                        EnemyRb.velocity = (Enemy.transform.position - transform.position).normalized * 5;
-                    }
-                }
-                _attackCooldown = 0.5f;
-                
+                _audioController.PlayMeleePreAttack();
                 _animator.SetTrigger("AttackMelee");
-                _audioSource.clip = MeleeAttackSound;
-                _audioSource.Play();
             }
         }
+    }
+
+    public void EndMeleeAttack()
+    {
+        Collider[] HitEnemies = Physics.OverlapSphere(AttackPoint.position, characteristics.AttackRange, EnemyLayers);
+        foreach (var Enemy in HitEnemies)
+        {
+            //Debug.Log($"EnemyDetected {Enemy.gameObject.name}");
+            Enemy.GetComponent<HaveHealth>()?.TakeDamage(characteristics.MeleeAttackDamage);
+
+            Rigidbody EnemyRb;
+            if (Enemy.gameObject.TryGetComponent<Rigidbody>(out EnemyRb))
+            {
+                EnemyRb.velocity = (Enemy.transform.position - transform.position).normalized * 5;
+            }
+        }
+        _attackCooldown = 0.5f;
+        if (HitEnemies.Length > 0) _audioController.PlayMeleeHitAttack();
     }
 }
