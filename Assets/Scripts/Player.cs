@@ -73,12 +73,16 @@ public class Player : MonoBehaviour
     }
     public Characteristics characteristics;
 
+    public AudioClip RangeAttackSound;
+    public AudioClip MeleeAttackSound;
+    
     private bool _onLight;
 
     public event Action LightsChanged;
 
     private Rigidbody _rb;
     private Animator _animator;
+    private AudioSource _audioSource;
     private float _attackCooldown = 0;
     public float _dashCooldown { get; private set; } = 0;
 
@@ -96,6 +100,7 @@ public class Player : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
+        _audioSource = GetComponentInChildren<AudioSource>();
         Object = gameObject;
         PlayerComponent = this;
         health.Death += Death;
@@ -244,6 +249,8 @@ public class Player : MonoBehaviour
                 _attackCooldown = 0.5f;
                 
                 _animator.SetTrigger("AttackRange");
+                _audioSource.clip = RangeAttackSound;
+                _audioSource.Play();
             }
             else
             {
@@ -262,6 +269,8 @@ public class Player : MonoBehaviour
                 _attackCooldown = 0.5f;
                 
                 _animator.SetTrigger("AttackMelee");
+                _audioSource.clip = MeleeAttackSound;
+                _audioSource.Play();
             }
         }
     }
