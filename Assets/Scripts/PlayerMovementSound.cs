@@ -34,8 +34,13 @@ public class PlayerMovementSound : MonoBehaviour
         }
     }
 
-   
+    void Step()
+    {
+        stepnumber = Random.Range(0, StepSound.Length);
+        source.PlayOneShot(SprintSound[stepnumber]);
+
+    }
 
 
-    
+
 }

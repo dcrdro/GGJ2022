@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 5373300789523532630}
   - component: {fileID: 3851469562101001297}
   - component: {fileID: 8343386923691544962}
+  - component: {fileID: 3354061817362386721}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -420,6 +421,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3354061817362386721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5373300789523532626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9389be00fa2a942cca3dfc19cd6d7c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StepSound:
+  - {fileID: 8300000, guid: 6d7755b3470694d22a02576c1c797e20, type: 3}
+  - {fileID: 8300000, guid: e871d55af082c48e695033de91ca62f5, type: 3}
+  - {fileID: 8300000, guid: 5c0c29d2a8f6842be9939c19f689baf5, type: 3}
+  - {fileID: 8300000, guid: c3ad282f58dc4456b85b9884767adde3, type: 3}
+  - {fileID: 8300000, guid: fc2c5943e97b24437ac5d6414b1ea75a, type: 3}
+  - {fileID: 8300000, guid: 7cce8fb7c98d941c6919f69f2a284095, type: 3}
+  SprintSound:
+  - {fileID: 8300000, guid: f221063c79408469aaa25da5d4a50bfd, type: 3}
+  - {fileID: 8300000, guid: 8fd75499cbdf54dac9087e7c15ff0f3f, type: 3}
+  - {fileID: 8300000, guid: a5df208db388048538e21a4767c1d399, type: 3}
+  - {fileID: 8300000, guid: 38d41d585054148249f38dae5357ec90, type: 3}
 --- !u!1001 &5373300789453542973
 PrefabInstance:
   m_ObjectHideFlags: 0
