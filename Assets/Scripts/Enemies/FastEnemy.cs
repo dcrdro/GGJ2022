@@ -11,6 +11,7 @@ public class FastEnemy : MonoBehaviour
 
     public HaveHealth health;
     private Rigidbody _rb;
+    private Animator _animator;
     private float _punchCooldown = 0;
     private float _scanCooldown = 0;
     private float _runOffTimer = 0;
@@ -22,6 +23,7 @@ public class FastEnemy : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _animator = GetComponentInChildren<Animator>();
         health = GetComponent<HaveHealth>();
         health.Death += Death;
         health.Damaged += Damaged;
@@ -51,6 +53,7 @@ public class FastEnemy : MonoBehaviour
             }
             if (_punchCooldown <= 0 && _runOffTimer <= 0)
             {
+                _animator.SetTrigger("Move");
                 RotateTowardLastSeen();
                 Move();
             }
@@ -84,6 +87,7 @@ public class FastEnemy : MonoBehaviour
 
     IEnumerator RunOff()
     {
+        yield return new WaitForSeconds(0.4f);
         _runOffTimer = 1;
         while (_runOffTimer > 0)
         {
@@ -99,8 +103,13 @@ public class FastEnemy : MonoBehaviour
     {
         if(collision.gameObject == Player.Object)
         {
-            Player.health.TakeDamage(10);
-            Attacked?.Invoke();
+            _animator.SetTrigger("Attack");
         }
+    }
+
+    public void EndAttack()
+    {
+        Player.health.TakeDamage(10);
+        Attacked?.Invoke();
     }
 }
