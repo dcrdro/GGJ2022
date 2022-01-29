@@ -40,7 +40,12 @@ public class PlayerMovementSound : MonoBehaviour
         source.PlayOneShot(SprintSound[stepnumber]);
 
     }
-
+    
+    public void Sprint()
+    {
+        clipnumber = Random.Range(0, SprintSound.Length);
+        source.PlayOneShot(SprintSound[clipnumber]);
+    }
 
 
 }
