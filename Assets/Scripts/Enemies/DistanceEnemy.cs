@@ -23,51 +23,19 @@ public class DistanceEnemy : MonoBehaviour
     private float _punchCooldown = 0;
 
     private bool SeePlayer = false;
-    private static List<DistanceEnemy> EnemiesThatSeePlayer = new List<DistanceEnemy>();
-    private static Coroutine ExistShotCoroutine = null;
-    private static IEnumerator ShotCoroutine()
-    {
-        Player.health.Death += PlayerDeath;
-        DistanceEnemy LastShotDistanceEnemy = null;
-        while (true)
-        {
-            if (EnemiesThatSeePlayer.Count > 0)
-            {
-                DistanceEnemy newEnemy;
-                do
-                {
-                    newEnemy = EnemiesThatSeePlayer[Random.Range(0, EnemiesThatSeePlayer.Count)];
-                } while (EnemiesThatSeePlayer.Count > 1 && newEnemy == LastShotDistanceEnemy);
-                LastShotDistanceEnemy = newEnemy;
-                LastShotDistanceEnemy.Shot();
-                yield return new WaitForSeconds(0.6f);
-            }
-            else
-            {
-                yield return null;
-            }
-        }
-    }
-    private static void PlayerDeath()
-    {
-        EnemiesThatSeePlayer.Clear();
-        ExistShotCoroutine = null;
-    }
+    
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         health = GetComponent<HaveHealth>();
         health.Death += Death;
         health.Damaged += Damaged;
-        if (ExistShotCoroutine == null)
-        {
-            ExistShotCoroutine = StartCoroutine(ShotCoroutine());
-        }
     }
     private void Death()
     {
         SeePlayer = false;
-        EnemiesThatSeePlayer.Remove(this);
+        DistanceEnemyCoordinator.EnemiesThatSeePlayer.Remove(this);
         Destroy(gameObject);
     }
     private void Damaged(float _)
@@ -80,38 +48,36 @@ public class DistanceEnemy : MonoBehaviour
         if (_punchCooldown > 0) _punchCooldown -= Time.deltaTime;
         Ray SeePlayerRay = new Ray(transform.position, Player.Object.transform.position - transform.position);
         var Hit = new RaycastHit();
-        if (Physics.Raycast(SeePlayerRay, out Hit) && Hit.collider.gameObject == Player.Object)
+        if (Physics.Raycast(SeePlayerRay, out Hit, 7) && Vector3.Distance(transform.position, Player.Object.transform.position) <= MaximumDistance)
         {
-            if (Vector3.Distance(transform.position, Player.Object.transform.position) <= MaximumDistance && Vector3.Distance(transform.position, Player.Object.transform.position) >= MediumDistance && _punchCooldown <= 0)
-            {
-                if (SeePlayer)
-                {
-                    SeePlayer = false;
-                    EnemiesThatSeePlayer.Remove(this);
-                }
-                RotateToPlayer();
-                MoveTowardPlayer();
-            }
-            else if (Vector3.Distance(transform.position, Player.Object.transform.position) <= MediumDistance && Vector3.Distance(transform.position, Player.Object.transform.position) >= MinDistance)
+            if (Vector3.Distance(transform.position, Player.Object.transform.position) <= MediumDistance)
             {
                 if (!SeePlayer)
                 {
                     SeePlayer = true;
-                    EnemiesThatSeePlayer.Add(this);
+                    DistanceEnemyCoordinator.EnemiesThatSeePlayer.Add(this);
+                }
+                if (Vector3.Distance(transform.position, Player.Object.transform.position) <= MinDistance && _punchCooldown <= 0)
+                {
+                    MoveAwayFormPlayer();
                 }
                 RotateToPlayer();
             }
-            else if (Vector3.Distance(transform.position, Player.Object.transform.position) <= MinDistance && _punchCooldown <= 0)
+            else if (Vector3.Distance(transform.position, Player.Object.transform.position) >= MediumDistance && _punchCooldown <= 0)
             {
                 if (SeePlayer)
                 {
                     SeePlayer = false;
-                    EnemiesThatSeePlayer.Remove(this);
+                    DistanceEnemyCoordinator.EnemiesThatSeePlayer.Remove(this);
                 }
-                RotateAwayFromPlayer();
-                MoveAwayFormPlayer();
+                RotateToPlayer();
+                MoveTowardPlayer();
             }
         }
+
+        if (SeePlayer) Model.GetComponent<MeshRenderer>().material = Player.PlayerComponent.LightMaterial;
+        else Model.GetComponent<MeshRenderer>().material = Player.PlayerComponent.DarkMaterial;
+
         if (_attackCooldown > 0) _attackCooldown -= Time.deltaTime;
     }
     private void RotateToPlayer()
@@ -121,13 +87,13 @@ public class DistanceEnemy : MonoBehaviour
         look.z = 0;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, look, RotateSpeed * Time.deltaTime);
     }
-    private void RotateAwayFromPlayer()
-    {
-        var look = Quaternion.Inverse(Quaternion.LookRotation(Player.Object.transform.position - transform.position));
-        look.x = 0;
-        look.z = 0;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, look, RotateSpeed * Time.deltaTime);
-    }
+    //private void RotateAwayFromPlayer()
+    //{
+    //    var look = Quaternion.Inverse(Quaternion.LookRotation(Player.Object.transform.position - transform.position));
+    //    look.x = 0;
+    //    look.z = 0;
+    //    transform.rotation = Quaternion.RotateTowards(transform.rotation, look, RotateSpeed * Time.deltaTime);
+    //}
     private void MoveTowardPlayer()
     {
         _rb.velocity = (Player.Object.transform.position - transform.position).normalized * Speed;
@@ -136,7 +102,7 @@ public class DistanceEnemy : MonoBehaviour
     {
         _rb.velocity = (Player.Object.transform.position - transform.position).normalized * -Speed;
     }
-    private void Shot()
+    public void Shot()
     {
         if (_attackCooldown <= 0)
         {

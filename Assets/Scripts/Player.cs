@@ -240,7 +240,7 @@ public class Player : MonoBehaviour
                 {
                     var Hp = collider.gameObject.GetComponent<HaveHealth>();
                     if (Hp != null) Hp.TakeDamage(characteristics.DistanceAttackDamage);
-                    else Destroy(sender);
+                    else if (!collider.isTrigger) Destroy(sender);
                 };
                 _attackCooldown = 0.5f;
             }
