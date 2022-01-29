@@ -75,9 +75,6 @@ public class DistanceEnemy : MonoBehaviour
             }
         }
 
-        if (SeePlayer) Model.GetComponent<MeshRenderer>().material = Player.PlayerComponent.LightMaterial;
-        else Model.GetComponent<MeshRenderer>().material = Player.PlayerComponent.DarkMaterial;
-
         if (_attackCooldown > 0) _attackCooldown -= Time.deltaTime;
     }
     private void RotateToPlayer()

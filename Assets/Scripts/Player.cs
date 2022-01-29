@@ -81,11 +81,8 @@ public class Player : MonoBehaviour
     private float _attackCooldown = 0;
     public float _dashCooldown { get; private set; } = 0;
 
-    void Start()
+    private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
-        Object = gameObject;
-        PlayerComponent = this;
         if (health == null)
         {
             health = gameObject.AddComponent<HaveHealth>();
@@ -93,6 +90,12 @@ public class Player : MonoBehaviour
             health.ToMax();
         }
         health.slider = HPSlider;
+    }
+    void Start()
+    {
+        _rb = GetComponent<Rigidbody>();
+        Object = gameObject;
+        PlayerComponent = this;
         health.Death += Death;
         LightsChanged += ChangeVisualLightForm;
     }
@@ -105,7 +108,6 @@ public class Player : MonoBehaviour
 
     private void Death()
     {
-        LightSourse.RaysCount = 0;
         SceneManager.LoadScene(0);
     }
     // Update is called once per frame

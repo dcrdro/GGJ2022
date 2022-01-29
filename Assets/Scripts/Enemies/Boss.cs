@@ -104,7 +104,7 @@ public class Boss : MonoBehaviour
             
         }
         RotateAwayFromPlayer();
-        Dash();
+        StartCoroutine(Dash());
         AttackBody = false;
         Attack?.Invoke();
     }

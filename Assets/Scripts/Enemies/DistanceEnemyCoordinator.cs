@@ -8,7 +8,14 @@ public class DistanceEnemyCoordinator : MonoBehaviour
     public void Start()
     {
         StartCoroutine(ShotCoroutine());
+        Player.health.Death += PlayerDeath;
     }
+
+    private void PlayerDeath()
+    {
+        EnemiesThatSeePlayer.Clear();
+    }
+
     public IEnumerator ShotCoroutine()
     {
         DistanceEnemy LastShotDistanceEnemy = null;

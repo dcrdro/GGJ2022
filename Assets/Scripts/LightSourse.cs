@@ -11,7 +11,14 @@ public class LightSourse : MonoBehaviour
     private void Start()
     {
         _light = GetComponent<Light>();
+        Player.health.Death += PlayerDeath;
     }
+
+    private void PlayerDeath()
+    {
+        RaysCount = 0;
+    }
+
     void Update()
     {
         if (_light.type == LightType.Directional)
