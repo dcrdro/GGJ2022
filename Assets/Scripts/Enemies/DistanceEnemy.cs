@@ -110,7 +110,12 @@ public class DistanceEnemy : MonoBehaviour
         {
             Animator.SetTrigger("Left");
         }
-        yield return new WaitForSeconds(0.35f);
+        
+        yield break;
+    }
+    
+    public void ShotProjectile() 
+    {
         var projectile = Instantiate(Projectile, AttackPoint.position, Model.transform.rotation).GetComponent<Projectile>();
         projectile.Damage = Damage;
         projectile.CollisionEnter += (sender, Damage, collision) =>
