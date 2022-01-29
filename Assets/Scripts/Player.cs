@@ -254,6 +254,8 @@ public class Player : MonoBehaviour
             }
             else
             {
+                _attackCooldown = 0.5f;
+
                 _audioController.PlayMeleePreAttack();
                 _animator.SetTrigger("AttackMelee");
             }
@@ -274,7 +276,6 @@ public class Player : MonoBehaviour
                 EnemyRb.velocity = (Enemy.transform.position - transform.position).normalized * 5;
             }
         }
-        _attackCooldown = 0.5f;
         if (HitEnemies.Length > 0) _audioController.PlayMeleeHitAttack();
     }
 }
