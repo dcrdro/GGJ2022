@@ -17,13 +17,13 @@ public class DistanceEnemy : MonoBehaviour
     public GameObject Projectile;
     public Transform AttackPoint;
     public GameObject Model;
+    public Animator Animator;
 
     private Rigidbody _rb;
-    private float _attackCooldown = 0;
     private float _punchCooldown = 0;
 
     private bool SeePlayer = false;
-    
+
 
     void Start()
     {
@@ -48,10 +48,11 @@ public class DistanceEnemy : MonoBehaviour
         if (_punchCooldown > 0) _punchCooldown -= Time.deltaTime;
         Ray SeePlayerRay = new Ray(transform.position, Player.Object.transform.position - transform.position);
         var Hit = new RaycastHit();
-        if (Physics.Raycast(SeePlayerRay, out Hit, 7) && Vector3.Distance(transform.position, Player.Object.transform.position) <= MaximumDistance)
+        if (Physics.Raycast(SeePlayerRay, out Hit) && Hit.collider.gameObject == Player.Object && Vector3.Distance(transform.position, Player.Object.transform.position) <= MaximumDistance)
         {
             if (Vector3.Distance(transform.position, Player.Object.transform.position) <= MediumDistance)
             {
+                Animator.SetBool("Approach", false);
                 if (!SeePlayer)
                 {
                     SeePlayer = true;
@@ -70,12 +71,12 @@ public class DistanceEnemy : MonoBehaviour
                     SeePlayer = false;
                     DistanceEnemyCoordinator.EnemiesThatSeePlayer.Remove(this);
                 }
+                Animator.SetBool("Approach", true);
                 RotateToPlayer();
                 MoveTowardPlayer();
             }
         }
-
-        if (_attackCooldown > 0) _attackCooldown -= Time.deltaTime;
+        Animator.SetBool("Approach", false);
     }
     private void RotateToPlayer()
     {
@@ -99,18 +100,23 @@ public class DistanceEnemy : MonoBehaviour
     {
         _rb.velocity = (Player.Object.transform.position - transform.position).normalized * -Speed;
     }
-    public void Shot()
+    public IEnumerator Shot()
     {
-        if (_attackCooldown <= 0)
+        if (Random.Range(0, 2) == 0)
         {
-            var projectile = Instantiate(Projectile, AttackPoint.position, Model.transform.rotation).GetComponent<Projectile>();
-            projectile.Damage = Damage;
-            projectile.CollisionEnter += (sender, Damage, collision) =>
-            {
-                collision.gameObject.GetComponent<HaveHealth>()?.TakeDamage(Damage);
-                Destroy(sender);
-            };
-            _attackCooldown = 1f;
+            Animator.SetTrigger("Right");
         }
+        else
+        {
+            Animator.SetTrigger("Left");
+        }
+        yield return new WaitForSeconds(0.35f);
+        var projectile = Instantiate(Projectile, AttackPoint.position, Model.transform.rotation).GetComponent<Projectile>();
+        projectile.Damage = Damage;
+        projectile.CollisionEnter += (sender, Damage, collision) =>
+        {
+            collision.gameObject.GetComponent<HaveHealth>()?.TakeDamage(Damage);
+            Destroy(sender);
+        };
     }
 }

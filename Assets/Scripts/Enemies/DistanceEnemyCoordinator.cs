@@ -29,7 +29,7 @@ public class DistanceEnemyCoordinator : MonoBehaviour
                     newEnemy = EnemiesThatSeePlayer[Random.Range(0, EnemiesThatSeePlayer.Count)];
                 } while (EnemiesThatSeePlayer.Count > 1 && newEnemy == LastShotDistanceEnemy);
                 LastShotDistanceEnemy = newEnemy;
-                LastShotDistanceEnemy.Shot();
+                LastShotDistanceEnemy.StartCoroutine(LastShotDistanceEnemy.Shot());
                 yield return new WaitForSeconds(0.6f);
             }
             else

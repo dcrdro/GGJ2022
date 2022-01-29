@@ -1,0 +1,225 @@
+fileFormatVersion: 2
+guid: 8641808b661d2c444bd77cc77355aaa1
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      74: -8910482986037732743
+    second: GG_male|Circle.001|Circle.001|Circle.001Action|Circle.001|Circle.001Act
+  - first:
+      74: -3669533410950361982
+    second: GG_male|Circle.001|Circle.001|head.001Action|Circle.001|head.001Action
+  - first:
+      74: -4405315108292246994
+    second: GG_male|Circle.001|Circle.001|lpMaleG.002Action.004|Circle.001|lpMaleG.
+  - first:
+      74: -3511434761245314716
+    second: GG_male|Circle.001|Circle.001|lpMaleG.004Action|Circle.001|lpMaleG.004A
+  - first:
+      74: -1275815807338894833
+    second: GG_male|Circle.001|Circle.001|lpMaleG.005Action|Circle.001|lpMaleG.005A
+  - first:
+      74: 8446131466278446665
+    second: GG_male|Circle.001|Circle.001|naruch.001Action|Circle.001|naruch.001Act
+  - first:
+      74: -7873030238391832905
+    second: GG_male|Circle.001|Circle.001|rig_CharRoot|Take 001|BaseLayer|Circle.00
+  - first:
+      74: 4530647909906842003
+    second: GG_male|GG_male.001Action
+  - first:
+      74: 2353243017721771
+    second: GG_male|GG_male.002Action
+  - first:
+      74: 3454702816592547633
+    second: GG_male|GG_male.003Action
+  - first:
+      74: -8014145799589435170
+    second: GG_male|GG_male.004Action
+  - first:
+      74: 3928063298018042636
+    second: GG_male|GG_male.005Action
+  - first:
+      74: -2174792171027828340
+    second: GG_male|GG_maleAction
+  - first:
+      74: -7845252861852437230
+    second: GG_male|head.001|head.001|Circle.001Action|head.001|Circle.001Action
+  - first:
+      74: 2486284155457587558
+    second: GG_male|head.001|head.001|head.001Action|head.001|head.001Action
+  - first:
+      74: -5568809038201956959
+    second: GG_male|head.001|head.001|lpMaleG.002Action.004|head.001|lpMaleG.002Act
+  - first:
+      74: 2292448005370221599
+    second: GG_male|head.001|head.001|lpMaleG.004Action|head.001|lpMaleG.004Action
+  - first:
+      74: 9174944625807669437
+    second: GG_male|head.001|head.001|lpMaleG.005Action|head.001|lpMaleG.005Action
+  - first:
+      74: -6385851098270566506
+    second: GG_male|head.001|head.001|naruch.001Action|head.001|naruch.001Action
+  - first:
+      74: -2662258427554197923
+    second: GG_male|head.001|head.001|rig_CharRoot|Take 001|BaseLayer|head.001|rig_
+  - first:
+      74: 3434497422745130784
+    second: GG_male|lpMaleG.004|lpMaleG.004|Circle.001Action|lpMaleG.004|Circle.001
+  - first:
+      74: -6678430424590257250
+    second: GG_male|lpMaleG.004|lpMaleG.004|head.001Action|lpMaleG.004|head.001Acti
+  - first:
+      74: -4231708788266357214
+    second: GG_male|lpMaleG.004|lpMaleG.004|lpMaleG.002Action.004|lpMaleG.004|lpMal
+  - first:
+      74: -227762956565698810
+    second: GG_male|lpMaleG.004|lpMaleG.004|lpMaleG.004Action|lpMaleG.004|lpMaleG.0
+  - first:
+      74: -3271517442896672335
+    second: GG_male|lpMaleG.004|lpMaleG.004|lpMaleG.005Action|lpMaleG.004|lpMaleG.0
+  - first:
+      74: 9050688881338722467
+    second: GG_male|lpMaleG.004|lpMaleG.004|naruch.001Action|lpMaleG.004|naruch.001
+  - first:
+      74: 8905899638566619012
+    second: GG_male|lpMaleG.004|lpMaleG.004|rig_CharRoot|Take 001|BaseLayer|lpMaleG
+  - first:
+      74: 5081650193062888151
+    second: GG_male|lpMaleG.005|lpMaleG.005|Circle.001Action|lpMaleG.005|Circle.001
+  - first:
+      74: -5966203408644537552
+    second: GG_male|lpMaleG.005|lpMaleG.005|head.001Action|lpMaleG.005|head.001Acti
+  - first:
+      74: -152194332768621250
+    second: GG_male|lpMaleG.005|lpMaleG.005|lpMaleG.002Action.004|lpMaleG.005|lpMal
+  - first:
+      74: -5173702074845094648
+    second: GG_male|lpMaleG.005|lpMaleG.005|lpMaleG.004Action|lpMaleG.005|lpMaleG.0
+  - first:
+      74: -7926166748834462382
+    second: GG_male|lpMaleG.005|lpMaleG.005|lpMaleG.005Action|lpMaleG.005|lpMaleG.0
+  - first:
+      74: 7636331266916131196
+    second: GG_male|lpMaleG.005|lpMaleG.005|naruch.001Action|lpMaleG.005|naruch.001
+  - first:
+      74: 3341251735968882408
+    second: GG_male|lpMaleG.005|lpMaleG.005|rig_CharRoot|Take 001|BaseLayer|lpMaleG
+  - first:
+      74: 1583386999949924971
+    second: GG_male|naruch.001|naruch.001|Circle.001Action|naruch.001|Circle.001Act
+  - first:
+      74: 1533590412195715814
+    second: GG_male|naruch.001|naruch.001|head.001Action|naruch.001|head.001Action
+  - first:
+      74: 8017176221042653197
+    second: GG_male|naruch.001|naruch.001|lpMaleG.002Action.004|naruch.001|lpMaleG.
+  - first:
+      74: 2340670023476531627
+    second: GG_male|naruch.001|naruch.001|lpMaleG.004Action|naruch.001|lpMaleG.004A
+  - first:
+      74: -7258457184116210292
+    second: GG_male|naruch.001|naruch.001|lpMaleG.005Action|naruch.001|lpMaleG.005A
+  - first:
+      74: 8355124434842539642
+    second: GG_male|naruch.001|naruch.001|naruch.001Action|naruch.001|naruch.001Act
+  - first:
+      74: -5378145070497648462
+    second: GG_male|naruch.001|naruch.001|rig_CharRoot|Take 001|BaseLayer|naruch.00
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     public static bool OnLight => LightSourse.RaysCount > 0;
 
     public GameObject Model;
-    public GameObject AttackIndicator;
     public GameObject Projectile;
     [NonSerialized]
     public GameObject Boss;
@@ -149,7 +148,7 @@ public class Player : MonoBehaviour
             characteristics.Speed *= 2;
         }
 
-        if (_attackCooldown >= 0.3 && AttackIndicator.activeSelf)
+        if (_attackCooldown >= 0.3)
         {
             Collider[] HitProjectiles = Physics.OverlapSphere(AttackPoint.position, characteristics.AttackRange / 1.5f);
             foreach (var Projectile in HitProjectiles)
@@ -157,16 +156,12 @@ public class Player : MonoBehaviour
                 Projectile.GetComponent<Projectile>()?.Reflect(Model.transform.rotation);
             }
         }
-        AttackIndicator.transform.localRotation = Quaternion.AngleAxis(-180 * (_attackCooldown - 0.3f) / 0.2f, Vector3.up);
-        AttackIndicator.transform.localRotation = Quaternion.AngleAxis(-180 * (_attackCooldown - 0.3f) / 0.2f, Vector3.up);
     }
 
     private void Timer()
     {
         if (_attackCooldown > 0) _attackCooldown -= Time.deltaTime;
         else if (_attackCooldown < 0) _attackCooldown = 0;
-
-        if (_attackCooldown <= 0.3) AttackIndicator.SetActive(false);
 
         if (_dashCooldown > 0) _dashCooldown -= Time.deltaTime;
         else if (_dashCooldown < 0) _dashCooldown = 0;
@@ -232,7 +227,6 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && _attackCooldown <= 0 && _dashCooldown <= 0)
         {
-            AttackIndicator.SetActive(false);
             RotateTowardMouse();
             if (OnLight)
             {
@@ -248,7 +242,6 @@ public class Player : MonoBehaviour
             }
             else
             {
-                AttackIndicator.SetActive(true);
                 Collider[] HitEnemies = Physics.OverlapSphere(AttackPoint.position, characteristics.AttackRange, EnemyLayers);
                 foreach (var Enemy in HitEnemies)
                 {

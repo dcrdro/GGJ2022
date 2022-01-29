@@ -376,7 +376,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Model: {fileID: 5373300788017683044}
-  AttackIndicator: {fileID: 5373300789388732397}
   Projectile: {fileID: 7313670429273453597, guid: b2120787ab34f7f458942f933f183590, type: 3}
   AttackPoint: {fileID: 5373300788420628520}
   Mouse: {fileID: 5373300788714555771}
