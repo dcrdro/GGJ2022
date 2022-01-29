@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
     public Material DarkMaterial;
     public Material LightMaterial;
     public SkinnedMeshRenderer MeshRenderer;
-
+    
     public LayerMask EnemyLayers;
 
     [Serializable]
@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
     public event Action LightsChanged;
 
     private Rigidbody _rb;
+    private Animator _animator;
     private float _attackCooldown = 0;
     public float _dashCooldown { get; private set; } = 0;
 
@@ -94,6 +95,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _animator = GetComponentInChildren<Animator>();
         Object = gameObject;
         PlayerComponent = this;
         health.Death += Death;
@@ -172,6 +174,7 @@ public class Player : MonoBehaviour
         var direction = new Vector2(horizontal * characteristics.Speed, vertical * characteristics.Speed);
 
         _rb.velocity = new Vector3(direction.x, _rb.velocity.y, direction.y);
+        _animator.SetBool("IsMoving", vertical * horizontal > 0.001f);
     }
     private void RotateTowardMoveDir(float vertical, float horizontal)
     {
@@ -239,6 +242,8 @@ public class Player : MonoBehaviour
                     else if (!collider.isTrigger) Destroy(sender);
                 };
                 _attackCooldown = 0.5f;
+                
+                _animator.SetTrigger("AttackRange");
             }
             else
             {
@@ -255,6 +260,8 @@ public class Player : MonoBehaviour
                     }
                 }
                 _attackCooldown = 0.5f;
+                
+                _animator.SetTrigger("AttackMelee");
             }
         }
     }
