@@ -25,7 +25,7 @@ public class PlayerMovementSound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && SprintSound.Length > 0)
         {
             clipnumber = Random.Range(0, SprintSound.Length);
             source.PlayOneShot(SprintSound[clipnumber]);
@@ -34,12 +34,14 @@ public class PlayerMovementSound : MonoBehaviour
 
     void Step()
     {
-        stepnumber = Random.Range(0, StepSound.Length);
-        source.PlayOneShot(StepSound[stepnumber]);
-
+        if (StepSound.Length > 0)
+        {
+            stepnumber = Random.Range(0, StepSound.Length);
+            source.PlayOneShot(StepSound[stepnumber]);
+        }
     }
-    
-    
+
+
 
 
 }
