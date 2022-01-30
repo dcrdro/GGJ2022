@@ -54,4 +54,6 @@ public class Menu : MonoBehaviour
         Application.Quit(0);
         Debug.Log("Quiting");
     }
+    
+    //public 
 }
