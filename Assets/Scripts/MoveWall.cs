@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
+using Cutscene;
 using UnityEngine;
 
 public class MoveWall : MonoBehaviour
@@ -9,6 +11,7 @@ public class MoveWall : MonoBehaviour
     public float Speed;
     public int NeedsToOpen;
     public bool Open = false;
+    public string CutseneKey;
     private AudioSource AudioS;
 
     void Start()
@@ -20,7 +23,7 @@ public class MoveWall : MonoBehaviour
     {
         if (BladePedestal.ActivatedCount >= NeedsToOpen && !Open)
         {
-            Activated();
+            CutsceneManager.Instance.Show(CutseneKey, Activated);
         }
         if (Open)
         {

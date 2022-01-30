@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cutscene;
 using UnityEngine;
 
 public class MoveSliderWall : MonoBehaviour
@@ -11,6 +12,7 @@ public class MoveSliderWall : MonoBehaviour
     public float Speed;
     public bool Open = false;
     public int NeedsToOpen;
+    public string CutseneKey;
     private AudioSource AudioS;
 
     private void Start()
@@ -23,6 +25,7 @@ public class MoveSliderWall : MonoBehaviour
         if (BladePedestal.ActivatedCount >= NeedsToOpen && !Open)
         {
             Open = true;
+            CutsceneManager.Instance.Show(CutseneKey);
         }
         if (Open)
         {
