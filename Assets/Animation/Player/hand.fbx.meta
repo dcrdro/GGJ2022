@@ -38,7 +38,7 @@ ModelImporter:
       name: hand
       takeName: hand
       internalID: 0
-      firstFrame: 1
+      firstFrame: 4.8
       lastFrame: 17
       wrapMode: 0
       orientationOffsetY: 0
