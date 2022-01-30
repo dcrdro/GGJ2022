@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FastEnemy : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class FastEnemy : MonoBehaviour
 
     public HaveHealth health;
     private Rigidbody _rb;
+    private NavMeshAgent _agent;
     private Animator _animator;
     private float _punchCooldown = 0;
     private float _scanCooldown = 0;
@@ -24,10 +26,14 @@ public class FastEnemy : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
+        _agent = GetComponent<NavMeshAgent>();
+        
         health = GetComponent<HaveHealth>();
         health.Death += Death;
         health.Damaged += Damaged;
         Attacked += WhenAttacked;
+
+        _agent.speed = Speed;
     }
     private void Death()
     {
@@ -55,14 +61,23 @@ public class FastEnemy : MonoBehaviour
             {
                 _animator.SetTrigger("Move");
                 RotateTowardLastSeen();
-                Move();
+                MoveTo(LastSeen);
             }
         }
     }
 
     private void Move()
     {
+        _agent.isStopped = true;
+        _rb.isKinematic = false;
         _rb.velocity = transform.forward * Speed;
+    }
+    
+    private void MoveTo(Vector3 target)
+    {
+        _agent.isStopped = false;
+        _rb.isKinematic = true;
+        _agent.SetDestination(target);
     }
 
     private void RotateTowardLastSeen()

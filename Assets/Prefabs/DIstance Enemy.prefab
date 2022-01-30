@@ -262,10 +262,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6040680724785600254}
-  - component: {fileID: 6040680724785600249}
   - component: {fileID: 6040680724785600248}
   - component: {fileID: 6040680724785600251}
   - component: {fileID: 6040680724785600255}
+  - component: {fileID: 1562259099294230562}
+  - component: {fileID: 6525430005867793956}
   m_Layer: 3
   m_Name: DIstance Enemy
   m_TagString: Untagged
@@ -290,19 +291,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &6040680724785600249
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6040680724785600250}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6040680724785600248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +345,42 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!195 &1562259099294230562
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6040680724785600250}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.44
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!136 &6525430005867793956
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6040680724785600250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.69
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.81, z: 0}
 --- !u!1 &7455036817652142539
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,14 +615,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 747dd3bb22720c34288e995bacf74a3e, type: 3}
---- !u!1 &4647610386348516307 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 747dd3bb22720c34288e995bacf74a3e, type: 3}
-  m_PrefabInstance: {fileID: 5530078206670216834}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5419081223069268329 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 747dd3bb22720c34288e995bacf74a3e, type: 3}
+  m_PrefabInstance: {fileID: 5530078206670216834}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4647610386348516307 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 747dd3bb22720c34288e995bacf74a3e, type: 3}
   m_PrefabInstance: {fileID: 5530078206670216834}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &1715919663290948470
@@ -633,3 +657,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DistanceEnemy: {fileID: 6040680724785600251}
+  FastEnemy: {fileID: 0}
+  Player: {fileID: 0}

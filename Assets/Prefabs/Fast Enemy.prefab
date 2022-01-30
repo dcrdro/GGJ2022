@@ -41,9 +41,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4126582971343592677}
   - component: {fileID: 4126582971343592682}
-  - component: {fileID: 4126582971343592683}
   - component: {fileID: 4126582971343592680}
   - component: {fileID: 4126582971343592681}
+  - component: {fileID: 3342633971413447713}
+  - component: {fileID: 7687405322396312158}
   m_Layer: 3
   m_Name: Fast Enemy
   m_TagString: Untagged
@@ -83,19 +84,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!135 &4126582971343592683
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4126582971343592686}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4126582971343592680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +115,42 @@ MonoBehaviour:
   MaxHealth: 40
   CurHealth: 40
   slider: {fileID: 4357456515375044376}
+--- !u!195 &3342633971413447713
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126582971343592686}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.44
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!136 &7687405322396312158
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126582971343592686}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.69
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.81, z: 0}
 --- !u!1001 &4153320970864921739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -379,6 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DistanceEnemy: {fileID: 0}
   FastEnemy: {fileID: 4126582971343592680}
+  Player: {fileID: 0}
 --- !u!1001 &8593347389892559326
 PrefabInstance:
   m_ObjectHideFlags: 0

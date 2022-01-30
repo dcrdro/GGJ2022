@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DistanceEnemy : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class DistanceEnemy : MonoBehaviour
     public Animator Animator;
 
     private Rigidbody _rb;
+    private NavMeshAgent _agent;
     private float _punchCooldown = 0;
 
     private bool SeePlayer = false;
@@ -28,9 +30,12 @@ public class DistanceEnemy : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _agent = GetComponent<NavMeshAgent>();
         health = GetComponent<HaveHealth>();
         health.Death += Death;
         health.Damaged += Damaged;
+
+        _agent.speed = Speed;
     }
     private void Death()
     {
@@ -94,10 +99,14 @@ public class DistanceEnemy : MonoBehaviour
     //}
     private void MoveTowardPlayer()
     {
-        _rb.velocity = (Player.Object.transform.position - transform.position).normalized * Speed;
+        _agent.isStopped = false;
+        _rb.isKinematic = true;
+        _agent.SetDestination(Player.Object.transform.position);
     }
     private void MoveAwayFormPlayer()
     {
+        _agent.isStopped = true;
+        _rb.isKinematic = false;
         _rb.velocity = (Player.Object.transform.position - transform.position).normalized * -Speed;
     }
     public IEnumerator Shot()
