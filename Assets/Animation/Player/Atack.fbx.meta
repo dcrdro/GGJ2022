@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 18de6f056d560bb4f89c7d57f227ee4b
+guid: 44ac11e23882b8f4382ba85f24fc442d
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -5252816984213320552
-    second: idle
+      74: 6975084725166020838
+    second: Atack
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -19,22 +19,9 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: "Avatar Rig Configuration mis-match. Inbetween bone rotation
-      in configuration does not match rotation in animation file:\n\t'MAN:L_Knee_02_JNT'
-      : rotation error = 6.351118 deg\n\t'MAN:R_Knee_02_JNT' : rotation error = 5.698939
-      deg\n"
+    rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'idle' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'MAN:Spine_02_JNT' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'MAN:CSpine_JNT' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\t'MAN:Neck2_JNT'
-      has translation animation that will be discarded.\n\t'MAN:Neck2_JNT' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\t'MAN:L_Clavicle_JNT'
-      has translation animation that will be discarded.\n\t'MAN:R_Clavicle_JNT' has
-      translation animation that will be discarded.\n\t'MAN:L_Knee_02_JNT' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\t'MAN:R_Knee_02_JNT'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -48,18 +35,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: idle
-      takeName: idle
+      name: Atack
+      takeName: Atack
       internalID: 0
       firstFrame: 1
-      lastFrame: 40
+      lastFrame: 22
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -71,7 +58,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.16640995
+        functionName: OnPlayerAttackEnded
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -123,28 +117,33 @@ ModelImporter:
     serializedVersion: 3
     human: []
     skeleton:
-    - name: idle(Clone)
+    - name: Atack(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: pCube1
-      parentName: idle(Clone)
-      position: {x: 0.00035923082, y: -0.02793493, z: -0.0000062703975}
+      parentName: Atack(Clone)
+      position: {x: -0, y: -0.0042328155, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 378, y: 1, z: 660}
+    - name: left
+      parentName: Atack(Clone)
+      position: {x: 10.000999, y: 0, z: 0}
+      rotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:left
-      parentName: idle(Clone)
+      parentName: Atack(Clone)
       position: {x: 10.000999, y: 0.75932676, z: 0.20220405}
       rotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:side1
-      parentName: idle(Clone)
+      parentName: Atack(Clone)
       position: {x: -10.000999, y: 0.033687405, z: -0.0569044}
       rotation: {x: 0, y: 0.7071068, z: 8.659561e-17, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:Pelvis1_DEF
-      parentName: idle(Clone)
+      parentName: Atack(Clone)
       position: {x: -1.1491639e-19, y: 0.9826443, z: 0.040718865}
       rotation: {x: 0.47981343, y: -0.5194026, z: -0.47981343, w: 0.5194026}
       scale: {x: 1, y: 1, z: 1}
@@ -554,7 +553,7 @@ ModelImporter:
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:DONOTTOUCH
-      parentName: idle(Clone)
+      parentName: Atack(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -565,38 +564,38 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:Spine_IK_hndl
       parentName: MAN:DONOTTOUCH
-      position: {x: -0.0068243165, y: 1.1158957, z: 0.04542585}
-      rotation: {x: 0.5749184, y: -0.46435854, z: -0.53282577, w: 0.41223377}
+      position: {x: -0.00034997097, y: 1.1344619, z: -0.04336948}
+      rotation: {x: 0.5845814, y: -0.4911814, z: -0.51848704, w: 0.38493723}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Arm_IK_hndl
       parentName: MAN:DONOTTOUCH
-      position: {x: -0.7222734, y: 1.2683376, z: 0.13589998}
+      position: {x: -0.6148611, y: 1.3362846, z: -0.32295567}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Arm_IK_hndl
       parentName: MAN:DONOTTOUCH
-      position: {x: 0.69768196, y: 1.2567915, z: 0.21831658}
+      position: {x: 0.6417619, y: 1.3802114, z: 0.320252}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:Root_jnt_ctrl
       parentName: MAN:DONOTTOUCH
-      position: {x: -0.0068285516, y: 0.9141745, z: 0.013956301}
+      position: {x: -0.0068300003, y: 0.9342527, z: -0.07507417}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:lowSpine_jnt_ctrl
       parentName: MAN:Root_jnt_ctrl
-      position: {x: -0, y: 0.01695007, z: 0.0035578464}
-      rotation: {x: 0.51933, y: -0.479892, z: -0.51933, w: 0.479892}
+      position: {x: 0.00051599054, y: 0.016947389, z: 0.003533115}
+      rotation: {x: 0.52754843, y: -0.51144785, z: -0.508713, w: 0.4486924}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:midSpine_jnt_ctrl
       parentName: MAN:lowSpine_jnt_ctrl
-      position: {x: -0.07952615, y: 0.0000000073545325, z: -1.7763568e-17}
-      rotation: {x: 0, y: -0, z: -0.066559836, w: 0.9977824}
+      position: {x: -0.07952615, y: 0.0000000073026962, z: 6.01875e-10}
+      rotation: {x: 0.039913602, y: -0.000594932, z: -0.066116884, w: 0.9970131}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:hiSpine_jnt_ctrl
       parentName: MAN:midSpine_jnt_ctrl
-      position: {x: -0.10696654, y: 1.4210854e-16, z: 1.9984014e-17}
-      rotation: {x: 0.052642677, y: -0.0015526238, z: -0.11977242, w: 0.9914035}
+      position: {x: -0.10696654, y: 1.0658141e-16, z: 4.4408918e-17}
+      rotation: {x: 0.092443295, y: -0.002867732, z: -0.11791569, w: 0.9887072}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:cSpine_jnt_ctrl
       parentName: MAN:hiSpine_jnt_ctrl
@@ -605,8 +604,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:hiHip_jnt_ctrl
       parentName: MAN:Root_jnt_ctrl
-      position: {x: 0.0014290051, y: -0.013883197, z: -0.0036420478}
-      rotation: {x: -0.44988358, y: 0.54553163, z: -0.39166227, w: 0.588728}
+      position: {x: 0.0014270882, y: -0.013864096, z: -0.0037148362}
+      rotation: {x: -0.44845945, y: 0.546703, z: -0.39012367, w: 0.5897487}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:lowHip_jnt_ctrl
       parentName: MAN:hiHip_jnt_ctrl
@@ -614,7 +613,7 @@ ModelImporter:
       rotation: {x: 0.47848246, y: -0.520629, z: 0.47848246, w: 0.520629}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:Man_RIG_grp
-      parentName: idle(Clone)
+      parentName: Atack(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -625,8 +624,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Ankle_ctrl
       parentName: MAN:Master_ctrl
-      position: {x: 0.29130247, y: 0.05293995, z: -0.20557785}
-      rotation: {x: 0, y: -0, z: -0.081107125, w: 0.9967054}
+      position: {x: 0.2913, y: 0.052943, z: -0.20557371}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: -1, y: 1, z: 1}
     - name: MAN:R_Heel_Lift_grp
       parentName: MAN:R_Ankle_ctrl
@@ -636,7 +635,7 @@ ModelImporter:
     - name: MAN:R_Toe_Lift_grp
       parentName: MAN:R_Heel_Lift_grp
       position: {x: -0.044140004, y: 0.014005482, z: 0.18658379}
-      rotation: {x: 0, y: -0.087155744, z: -0, w: 0.9961947}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Foot_IK_hndl
       parentName: MAN:R_Toe_Lift_grp
@@ -685,7 +684,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: -1}
     - name: MAN:L_Ankle_ctrl
       parentName: MAN:Master_ctrl
-      position: {x: -0.22539952, y: 0.053617496, z: 0.21445747}
+      position: {x: -0.22540332, y: 0.053615317, z: 0.21445704}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Heel_Lift_grp
@@ -745,28 +744,28 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:COG_ctrl
       parentName: MAN:Master_ctrl
-      position: {x: -0.0068285516, y: 0.9141745, z: 0.0139563}
+      position: {x: -0.0068300003, y: 0.9342527, z: -0.07507418}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:Hip_ctrl
       parentName: MAN:COG_ctrl
       position: {x: -0, y: -0.000000020059844, z: -8.885764e-10}
-      rotation: {x: 0.10459018, y: 0.0053685876, z: 0.050980367, w: 0.9931934}
+      rotation: {x: 0.10718151, y: 0.0055017895, z: 0.05096793, w: 0.992917}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:LowSpine_ctrl
       parentName: MAN:COG_ctrl
       position: {x: -0, y: -0.000000020059844, z: -8.885764e-10}
-      rotation: {x: 0.07992415, y: -0, z: -0, w: 0.99680096}
+      rotation: {x: 0.07850641, y: -0.041652355, z: -0.020287717, w: 0.9958365}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:MidSpine_ctrl
       parentName: MAN:LowSpine_ctrl
       position: {x: -0, y: 0.096565016, z: -0.0056326604}
-      rotation: {x: 0.10073345, y: -0, z: -0, w: 0.99491346}
+      rotation: {x: 0.10026437, y: -0.039716557, z: 0.004005549, w: 0.99415976}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:HiSpine_ctrl
       parentName: MAN:MidSpine_ctrl
       position: {x: -0, y: 0.10577003, z: -0.015954567}
-      rotation: {x: 0.11358224, y: -0.052323796, z: 0.0059901862, w: 0.99213177}
+      rotation: {x: 0.111742385, y: -0.09190353, z: 0.010379291, w: 0.98942393}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Clavicle_ctrl_grp
       parentName: MAN:HiSpine_ctrl
@@ -776,7 +775,7 @@ ModelImporter:
     - name: MAN:L_Clavicle_ctrl
       parentName: MAN:L_Clavicle_ctrl_grp
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.002661399, y: 0.071142964, z: 0.037288167, w: 0.9967654}
+      rotation: {x: 0.008492896, y: -0.062478807, z: 0.1344257, w: 0.9889156}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Shoulder_FK_ctrl_grp
       parentName: MAN:L_Clavicle_ctrl
@@ -786,7 +785,7 @@ ModelImporter:
     - name: MAN:L_Shoulder_FK_ctrl
       parentName: MAN:L_Shoulder_FK_ctrl_grp
       position: {x: -0.051849443, y: -0.000000040412573, z: -0.00000000239163}
-      rotation: {x: 0.09237739, y: -0.14223135, z: 0.53679514, w: 0.8264912}
+      rotation: {x: -0.06642149, y: 0.13836591, z: 0.4306602, w: 0.8893677}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Elbow_FK_ctrl_grp
       parentName: MAN:L_Shoulder_FK_ctrl
@@ -796,7 +795,7 @@ ModelImporter:
     - name: MAN:L_Elbow_FK_ctrl
       parentName: MAN:L_Elbow_FK_ctrl_grp
       position: {x: -4.440892e-18, y: 0, z: 8.881784e-18}
-      rotation: {x: 0.046650477, y: 0.24699259, z: -0.08242172, w: 0.96437806}
+      rotation: {x: 8.618688e-17, y: 0.77238977, z: -8.618688e-17, w: 0.6351488}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Wrist_FK_ctrl_grp
       parentName: MAN:L_Elbow_FK_ctrl
@@ -806,7 +805,7 @@ ModelImporter:
     - name: MAN:L_Wrist_FK_ctrl
       parentName: MAN:L_Wrist_FK_ctrl_grp
       position: {x: -8.881784e-18, y: 0, z: 3.1086245e-17}
-      rotation: {x: 0, y: -0, z: -0.16270071, w: 0.9866755}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Clavicle_ctrl_grp
       parentName: MAN:HiSpine_ctrl
@@ -816,7 +815,7 @@ ModelImporter:
     - name: MAN:R_Clavicle_ctrl
       parentName: MAN:R_Clavicle_ctrl_grp
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.0006312231, y: -0.017831266, z: -0.035372004, w: 0.99921495}
+      rotation: {x: 0.3989046, y: 0.08646613, z: 0.051178135, w: 0.9114711}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Shoulder_FK_ctrl_grp
       parentName: MAN:R_Clavicle_ctrl
@@ -826,7 +825,7 @@ ModelImporter:
     - name: MAN:R_Shoulder_FK_ctrl
       parentName: MAN:R_Shoulder_FK_ctrl_grp
       position: {x: 0.05184962, y: -0.0000049139726, z: 0.0000016482486}
-      rotation: {x: -0.012823608, y: 0.022820774, z: 0.48971382, w: 0.8714902}
+      rotation: {x: -0.078360714, y: 0.12468257, z: 0.5380231, w: 0.82996684}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Elbow_FK_ctrl_grp
       parentName: MAN:R_Shoulder_FK_ctrl
@@ -836,7 +835,7 @@ ModelImporter:
     - name: MAN:R_Elbow_FK_ctrl
       parentName: MAN:R_Elbow_FK_ctrl_grp
       position: {x: 8.881784e-18, y: 5.684342e-16, z: 3.5527136e-17}
-      rotation: {x: 0.14810617, y: 0.43533048, z: -0.033288475, w: 0.88738036}
+      rotation: {x: 0.09281816, y: 0.7049697, z: -0.09486553, w: 0.69670874}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Wrist_FK_ctrl_grp
       parentName: MAN:R_Elbow_FK_ctrl
@@ -846,12 +845,12 @@ ModelImporter:
     - name: MAN:R_Wrist_FK_ctrl
       parentName: MAN:R_Wrist_FK_ctrl_grp
       position: {x: -1.3322676e-17, y: 5.684342e-16, z: 6.217249e-17}
-      rotation: {x: 0, y: -0, z: -0.14335752, w: 0.989671}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:Neck_ctrl
       parentName: MAN:HiSpine_ctrl
       position: {x: -0, y: 0.30023804, z: -0.039718535}
-      rotation: {x: -0.08709209, y: 0.029297091, z: -0.024691973, w: 0.9954632}
+      rotation: {x: -0.085421726, y: 0.029255094, z: -0.02474007, w: 0.995608}
       scale: {x: 1.5, y: 1.5, z: 1.5}
     - name: MAN:Neck_02_grp
       parentName: MAN:Neck_ctrl
@@ -865,18 +864,18 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Arm_IK_FK_Switch_ctrl
       parentName: MAN:Master_ctrl
-      position: {x: -0.29385763, y: 1.4544967, z: -0.35270327}
+      position: {x: -0.46798187, y: 1.6661934, z: -0.3289196}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Arm_IK_FK_Switch_ctrl
       parentName: MAN:Master_ctrl
-      position: {x: 0.33147612, y: 1.3587593, z: -0.18367215}
+      position: {x: 0.46798196, y: 1.66619, z: -0.3289196}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Elbow_PV_ctrl_offst
       parentName: MAN:Master_ctrl
-      position: {x: -0.49662417, y: 1.507139, z: -0.21223493}
-      rotation: {x: 0.28505102, y: 0.004786421, z: 0.052627016, w: 0.95705456}
+      position: {x: -0.22429211, y: 1.5564697, z: -0.49063376}
+      rotation: {x: 0.26284507, y: -0.27109146, z: 0.09900313, w: 0.920663}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Elbow_PV_ctrl
       parentName: MAN:L_Elbow_PV_ctrl_offst
@@ -885,8 +884,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Elbow_PV_ctrl_offst
       parentName: MAN:Master_ctrl
-      position: {x: 0.61881423, y: 1.5332822, z: -0.1829055}
-      rotation: {x: 0.9409463, y: -0.07536538, z: 0.16736324, w: -0.28448153}
+      position: {x: 0.49675605, y: 1.8310013, z: 0.18093917}
+      rotation: {x: -0.74654484, y: -0.06022311, z: -0.18417495, w: 0.6364932}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Elbow_PV_ctrl
       parentName: MAN:R_Elbow_PV_ctrl_offst
@@ -895,12 +894,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Wrist_IK_ctrl_grp_offst
       parentName: MAN:Master_ctrl
-      position: {x: -0.72227347, y: 1.2683375, z: 0.13589998}
-      rotation: {x: 0.27721733, y: 0.11358917, z: 0.0847009, w: 0.95030195}
+      position: {x: -0.61486113, y: 1.3362844, z: -0.32295567}
+      rotation: {x: 0.24988163, y: -0.16463746, z: 0.12825096, w: 0.9455186}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Wrist_IK_ctrl
       parentName: MAN:L_Wrist_IK_ctrl_grp_offst
-      position: {x: 1.7763568e-17, y: 0, z: 3.1086245e-17}
+      position: {x: -1.4210854e-16, y: 0, z: 3.1086245e-17}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Wrist_ofst
@@ -910,8 +909,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Wrist_IK_ctrl_grp_offst
       parentName: MAN:Master_ctrl
-      position: {x: 0.69768196, y: 1.2567915, z: 0.21831658}
-      rotation: {x: 0.9409463, y: -0.07536538, z: 0.16736324, w: -0.28448153}
+      position: {x: 0.6417619, y: 1.3802114, z: 0.320252}
+      rotation: {x: -0.74654484, y: -0.06022311, z: -0.18417495, w: 0.6364932}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Wrist_IK_ctrl
       parentName: MAN:R_Wrist_IK_ctrl_grp_offst
@@ -925,18 +924,18 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Knee_PV_ctrl_ofst
       parentName: MAN:Master_ctrl
-      position: {x: -0.22619583, y: 0.3459194, z: 0.52455825}
+      position: {x: -0.22619963, y: 0.34591728, z: 0.5245578}
       rotation: {x: 0.6551195, y: 0.2661175, z: 0.6551195, w: 0.2661175}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Knee_PV_ctrl
       parentName: MAN:L_Knee_PV_ctrl_ofst
-      position: {x: -0.000000009742001, y: 2.8493524e-10, z: -0.044052474}
+      position: {x: -0.000000009742, y: 2.8493538e-10, z: -0.000000003743778}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Knee_PV_ctrl_ofst
       parentName: MAN:Master_ctrl
-      position: {x: 0.3389721, y: 0.3439004, z: 0.1032864}
-      rotation: {x: 0.67454517, y: 0.21210572, z: 0.63137716, w: 0.31837535}
+      position: {x: 0.2913, y: 0.34778258, z: 0.103290536}
+      rotation: {x: 0.65511954, y: 0.2661173, z: 0.65511954, w: 0.2661173}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Knee_PV_ctrl
       parentName: MAN:R_Knee_PV_ctrl_ofst
@@ -945,8 +944,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Fingers_grp
       parentName: MAN:Master_ctrl
-      position: {x: -0.40826502, y: 0.97371715, z: -0.10042032}
-      rotation: {x: 0.17327777, y: -0.035295, z: 0.37452015, w: 0.9101998}
+      position: {x: -0.327931, y: 1.2000275, z: 0.045971755}
+      rotation: {x: -0.3686579, y: 0.5001676, z: 0.3188715, w: 0.7157127}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Thumb_01_ctrl_offst
       parentName: MAN:L_Fingers_grp
@@ -961,7 +960,7 @@ ModelImporter:
     - name: MAN:L_Thumb_01_fist
       parentName: MAN:L_Thumb_01_conn
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0, y: 0, z: 0.17508386, w: 0.9845535}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Thumb_01_ctrl
       parentName: MAN:L_Thumb_01_fist
@@ -981,12 +980,12 @@ ModelImporter:
     - name: MAN:L_Thumb_02_fist
       parentName: MAN:L_Thumb_02_conn
       position: {x: 2.842171e-16, y: 0, z: 5.684342e-16}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0.032998253, y: -0.067408174, z: 0.438434, w: 0.89562434}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Thumb_02_ctrl
       parentName: MAN:L_Thumb_02_fist
       position: {x: -0.000000024706926, y: -0.00000009614757, z: 0.00000010344729}
-      rotation: {x: 0.0069755707, y: -0.065173574, z: 0.10619398, w: 0.9921828}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Thumb_03_ctrl_offst
       parentName: MAN:L_Thumb_02_ctrl
@@ -1001,12 +1000,12 @@ ModelImporter:
     - name: MAN:L_Thumb_03_fist
       parentName: MAN:L_Thumb_03_conn
       position: {x: 2.842171e-16, y: 0, z: -2.842171e-16}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0.08576292, y: -0.1930402, z: 0.3968477, w: 0.8932481}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Thumb_03_ctrl
       parentName: MAN:L_Thumb_03_fist
       position: {x: 0.0000000305271, y: -0.000000108366315, z: 0.000000019833175}
-      rotation: {x: 0.0069755707, y: -0.065173574, z: 0.10619398, w: 0.9921828}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Mid_Meta_offst
       parentName: MAN:L_Fingers_grp
@@ -1031,7 +1030,7 @@ ModelImporter:
     - name: MAN:L_MId_01_fist
       parentName: MAN:L_MId_01_conn
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0, y: 0, z: 0.6643579, w: 0.7474146}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_MId_01_ctrl
       parentName: MAN:L_MId_01_fist
@@ -1051,7 +1050,7 @@ ModelImporter:
     - name: MAN:L_MId_02_fist
       parentName: MAN:L_MId_02_conn
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0, y: 0, z: 0.81026715, w: 0.5860607}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_MId_02_ctrl
       parentName: MAN:L_MId_02_fist
@@ -1081,7 +1080,7 @@ ModelImporter:
     - name: MAN:L_Pinky_01_fist
       parentName: MAN:L_Pinky_01_conn
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0, y: 0, z: 0.61623466, w: 0.7875626}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Pinky_01_ctrl
       parentName: MAN:L_Pinky_01_fist
@@ -1101,7 +1100,7 @@ ModelImporter:
     - name: MAN:L_Pinky_02_fist
       parentName: MAN:L_Pinky_02_conn
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0, y: 0, z: 0.79175115, w: 0.6108438}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Pinky_02_ctrl
       parentName: MAN:L_Pinky_02_fist
@@ -1110,8 +1109,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Fingers_grp
       parentName: MAN:Master_ctrl
-      position: {x: 0.34041104, y: 0.9434584, z: 0.19234884}
-      rotation: {x: 0.021322528, y: -0.37500206, z: -0.4103679, w: 0.8309735}
+      position: {x: 0.26550624, y: 1.0969621, z: 0.14575808}
+      rotation: {x: 0.14248808, y: -0.5264744, z: -0.53926456, w: 0.6416507}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Thumb_01_offst
       parentName: MAN:R_Fingers_grp
@@ -1126,7 +1125,7 @@ ModelImporter:
     - name: MAN:R_Thumb_01_fist
       parentName: MAN:R_Thumb_01_conn
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0, y: 0, z: 0.17860667, w: 0.9839206}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Thumb_01_ctrl
       parentName: MAN:R_Thumb_01_fist
@@ -1146,12 +1145,12 @@ ModelImporter:
     - name: MAN:R_Thumb_02_fist
       parentName: MAN:R_Thumb_02_conn
       position: {x: 2.842171e-16, y: 5.684342e-16, z: -2.842171e-16}
-      rotation: {x: 0, y: 0.14228949, z: -0, w: 0.98982507}
+      rotation: {x: -0.05167719, y: 0.098277785, z: 0.46253026, w: 0.87962306}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Thumb_02_ctrl
       parentName: MAN:R_Thumb_02_fist
       position: {x: -0.000000083399414, y: 0.00000008923469, z: 0.00000011981673}
-      rotation: {x: 0, y: 0, z: 0.099363126, w: 0.99505126}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Thumb_03_offst
       parentName: MAN:R_Thumb_02_ctrl
@@ -1166,12 +1165,12 @@ ModelImporter:
     - name: MAN:R_Thumb_03_fist
       parentName: MAN:R_Thumb_03_conn
       position: {x: 4.2632563e-16, y: 2.2737367e-15, z: 0}
-      rotation: {x: 0, y: -0.14180176, z: -0, w: 0.9898951}
+      rotation: {x: 0.13542259, y: -0.16838633, z: 0.61190003, w: 0.760845}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Thumb_03_ctrl
       parentName: MAN:R_Thumb_03_fist
       position: {x: -0.0000000071863027, y: -0.000000031351444, z: 0.000000029788602}
-      rotation: {x: 0, y: 0, z: 0.15006474, w: 0.9886762}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Mid_Meta_ofst
       parentName: MAN:R_Fingers_grp
@@ -1196,12 +1195,12 @@ ModelImporter:
     - name: MAN:R_Mid2_fist
       parentName: MAN:R_Mid2_conn
       position: {x: 2.842171e-16, y: 8.5265126e-16, z: 7.105427e-17}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0, y: 0, z: 0.62125295, w: 0.7836101}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Mid2_ctrl
       parentName: MAN:R_Mid2_fist
-      position: {x: -0.000000031128778, y: -0.000000017260271, z: -0.0000000031631293}
-      rotation: {x: 0, y: -0, z: -0.03901996, w: 0.99923843}
+      position: {x: -0.000000031128778, y: -0.000000017260273, z: -0.0000000031631293}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Mid3_offst
       parentName: MAN:R_Mid2_ctrl
@@ -1216,7 +1215,7 @@ ModelImporter:
     - name: MAN:R_Mid3_fist
       parentName: MAN:R_Mid3_conn
       position: {x: 3.330669e-16, y: 1.7053025e-15, z: 5.3290704e-17}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0, y: 0, z: 0.76514345, w: 0.64385986}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Mid3_ctrl
       parentName: MAN:R_Mid3_fist
@@ -1246,7 +1245,7 @@ ModelImporter:
     - name: MAN:R_Pinky_01_fist
       parentName: MAN:R_Pinky_01_conn
       position: {x: -2.1316282e-16, y: -5.684342e-16, z: -1.7763568e-17}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0, y: 0, z: 0.56133044, w: 0.8275918}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Pinky_01_ctrl
       parentName: MAN:R_Pinky_01_fist
@@ -1266,11 +1265,11 @@ ModelImporter:
     - name: MAN:R_Pinky_02_fist
       parentName: MAN:R_Pinky_02_conn
       position: {x: 0.0000000034957857, y: -0.00000003018569, z: 0.000000004339655}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0, y: 0, z: 0.79978794, w: 0.6002826}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Pinky_02_ctrl
       parentName: MAN:R_Pinky_02_fist
-      position: {x: 1.9539925e-16, y: 0, z: 0}
+      position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Fingers_Pose_ctrl_grp
@@ -1280,7 +1279,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Fingers_Pose_ctrl
       parentName: MAN:R_Fingers_Pose_ctrl_grp
-      position: {x: -0.31123677, y: 0.5227315, z: -0.29307833}
+      position: {x: -0.3947319, y: 0.36922783, z: -0.26461798}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Fingers_Pose_ctrl_grp
@@ -1290,119 +1289,159 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Fingers_Pose_ctrl
       parentName: MAN:L_Fingers_Pose_ctrl_grp
-      position: {x: 0.31129196, y: -0.49247625, z: -0.007451044}
+      position: {x: 0.35646963, y: -0.266166, z: 0.15330705}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:Head_ofst
       parentName: MAN:Master_ctrl
-      position: {x: -0.007067561, y: 1.46484, z: 0.23437023}
-      rotation: {x: 0.20710881, y: -0.016842416, z: -0.023172662, w: 0.9778984}
+      position: {x: -0.013044844, y: 1.486732, z: 0.14094861}
+      rotation: {x: 0.20528047, y: -0.13972506, z: -0.04179159, w: 0.967776}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:Head_ctrl
       parentName: MAN:Head_ofst
-      position: {x: 2.499625e-18, y: 0.0398442, z: 0.0020090803}
+      position: {x: 1.6659437e-18, y: 0.0398442, z: 0.0020090803}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:Man_JNT_grp
-      parentName: idle(Clone)
+      parentName: Atack(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:Pelvis_JNT
       parentName: MAN:Man_JNT_grp
-      position: {x: -0.00088963, y: 0.9661066, z: -0.0030295418}
-      rotation: {x: 0.47981343, y: -0.5194026, z: -0.47981343, w: 0.5194026}
-      scale: {x: 1.0000001, y: 1, z: 1}
+      position: {x: -0.0009000326, y: 0.93678033, z: -0.0923625}
+      rotation: {x: 0.40934345, y: -0.4358285, z: -0.4965707, w: 0.629213}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:Spine_01_JNT
       parentName: MAN:Pelvis_JNT
-      position: {x: -0.07725713, y: 0.009977711, z: -0.0017786571}
-      rotation: {x: -0, y: -0, z: -0, w: 1}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+      position: {x: -0.077189885, y: 0.009977107, z: -0.0023490908}
+      rotation: {x: -0.0044919034, y: -0.08031917, z: 0.09011592, w: 0.9926771}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:Spine_02_JNT
       parentName: MAN:Spine_01_JNT
       position: {x: -0.053257473, y: 0.0019844908, z: -1.1180372e-18}
-      rotation: {x: -0, y: -0, z: 0.027557643, w: 0.99962026}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+      rotation: {x: 0.045400437, y: 0.01267328, z: -0.12754573, w: 0.99071205}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:Spine_03_JNT
       parentName: MAN:Spine_02_JNT
       position: {x: -0.055083774, y: 1.4793505e-16, z: 1.0357587e-18}
-      rotation: {x: 0.000000028969719, y: -0.000000030612284, z: 0.011821425, w: 0.99993014}
-      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000002}
+      rotation: {x: 0.046284292, y: 0.00004181188, z: -0.010920422, w: 0.99886864}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:Spine_04_JNT
       parentName: MAN:Spine_03_JNT
       position: {x: -0.07783188, y: -7.2541794e-17, z: 2.57594e-18}
-      rotation: {x: -0, y: -0, z: 8.8682926e-16, w: 1}
-      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:CSpine_JNT
       parentName: MAN:Spine_04_JNT
       position: {x: -0.08569376, y: 0.0017770763, z: 7.107487e-18}
-      rotation: {x: -0.000000001614447, y: -0.000000030192737, z: -0.014344431, w: 0.9998971}
-      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+      rotation: {x: 0.08865739, y: -0.00276772, z: -0.1112509, w: 0.98982596}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:Neck1_JNT
       parentName: MAN:CSpine_JNT
       position: {x: -0.2171436, y: -5.362377e-16, z: -1.16723e-17}
-      rotation: {x: 0.0000000685507, y: -0.00000002568895, z: 0.16759102, w: -0.9858566}
-      scale: {x: 1.0000002, y: 1.0000006, z: 1.0000004}
+      rotation: {x: -2.361457e-25, y: 2.2571168e-17, z: -0.16759104, w: 0.98585665}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:Neck2_JNT
       parentName: MAN:Neck1_JNT
-      position: {x: -0.06450407, y: 0.0049365973, z: -0.0044464744}
-      rotation: {x: 0.0000000034407814, y: -0.000000028870284, z: -0.024418142, w: -0.99970186}
-      scale: {x: 1.0000002, y: 1, z: 0.99999994}
+      position: {x: -0.06435262, y: 0.0048370482, z: -0.005088297}
+      rotation: {x: -0.024262145, y: -0.029652653, z: 0.109707065, w: 0.9932253}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:Neck3_JNT
       parentName: MAN:Neck2_JNT
-      position: {x: -0.037588306, y: -2.1316282e-16, z: 1.7763568e-17}
-      rotation: {x: -0.000000029734757, y: -0.0000000020056385, z: -0.05155551, w: -0.99867016}
-      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000004}
+      position: {x: -0.037588306, y: 0, z: 3.5527136e-17}
+      rotation: {x: -5.551116e-17, y: 5.551116e-17, z: 0.051555514, w: 0.99867016}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:Head1_JNT
       parentName: MAN:Neck3_JNT
-      position: {x: -0.039894298, y: -0.00020417305, z: -3.5527136e-17}
-      rotation: {x: -0.000000027729133, y: -0.000000031740388, z: -0.007486525, w: 0.999972}
-      scale: {x: 1.0000002, y: 1.0000005, z: 1.0000002}
+      position: {x: -0.039894298, y: -0.00020417305, z: 0}
+      rotation: {x: 1.110223e-16, y: 7.9241984e-26, z: -0.0074863494, w: 0.999972}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:Head2_JNT
       parentName: MAN:Head1_JNT
       position: {x: -0.14014609, y: -1.8661077e-16, z: 6.638635e-18}
-      rotation: {x: -0, y: -0, z: -8.801334e-16, w: 1}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Eye_JNT
       parentName: MAN:Head1_JNT
       position: {x: -0.03635485, y: 0.099185675, z: 0.03859758}
-      rotation: {x: 1, y: 0.00000004470348, z: -0.000000063894184, w: -0.00000005498145}
-      scale: {x: 1.0000001, y: 0.99999994, z: 1}
+      rotation: {x: 1, y: 0, z: 0, w: -6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Eye_JNT
       parentName: MAN:Head1_JNT
       position: {x: -0.036351126, y: 0.09918596, z: -0.0385976}
-      rotation: {x: 0.000000059604638, y: -1, z: 0.0000000022281819, w: 0.000000029718912}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+      rotation: {x: 6.123234e-17, y: 1, z: -6.123234e-17, w: -6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:Jaw_JNT
       parentName: MAN:Neck3_JNT
       position: {x: -0.00034725168, y: 0.056063276, z: 5.3055636e-17}
-      rotation: {x: 0.42822033, y: -0.9036744, z: 7.1054274e-15, w: 3.4416914e-15}
-      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000002}
+      rotation: {x: -0.42822018, y: 0.9036745, z: -2.911318e-17, w: 8.155503e-17}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:Chin_JNT
       parentName: MAN:Jaw_JNT
       position: {x: -0.072814025, y: 1.4210854e-16, z: -3.0448853e-17}
-      rotation: {x: -0, y: -0, z: -0, w: 1}
-      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Clavicle_JNT
       parentName: MAN:CSpine_JNT
-      position: {x: -0.10794112, y: 0.032562528, z: 0.042838324}
-      rotation: {x: -0.44628733, y: 0.4195395, z: 0.4493917, w: 0.6502779}
-      scale: {x: 1, y: 1.0000002, z: 1.0000004}
+      position: {x: -0.10786287, y: 0.03222795, z: 0.042206462}
+      rotation: {x: -0.37985557, y: 0.49577203, z: 0.47883096, w: 0.61696094}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Shoulder_JNT
       parentName: MAN:L_Clavicle_JNT
       position: {x: -0.18734813, y: 2.842171e-16, z: 2.6645352e-17}
-      rotation: {x: -0.01752886, y: 0.12306124, z: 0.13992198, w: 0.98232913}
-      scale: {x: 1.0000006, y: 0.9999996, z: 0.99999994}
+      rotation: {x: -0.16030972, y: 0.16210988, z: 0.03340072, w: 0.9730908}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Elbow_JNT
       parentName: MAN:L_Shoulder_JNT
       position: {x: -0.2545825, y: 1.4484441e-10, z: 2.4871598e-16}
-      rotation: {x: -0.0041561043, y: 0.036869034, z: -0.02669626, w: 0.9989549}
-      scale: {x: 0.9999998, y: 1, z: 1.0000001}
+      rotation: {x: -0.024003765, y: -0.0002088099, z: -0.014185212, w: 0.9996112}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Wrist_JNT
       parentName: MAN:L_Elbow_JNT
       position: {x: -0.24826135, y: -1.1368684e-15, z: -7.105427e-17}
-      rotation: {x: 0.000000016002511, y: 0.00000008940697, z: 0.000000078837225, w: 1}
-      scale: {x: 1.0000002, y: 1.0000001, z: 0.99999994}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MAN:L_Mid1_JNT
+      parentName: MAN:L_Wrist_JNT
+      position: {x: -0.063647345, y: 7.164686e-11, z: 0.0004920275}
+      rotation: {x: -0.001203203, y: -0.0041505042, z: 0.08062452, w: 0.99673516}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MAN:L_Mid2_JNT
+      parentName: MAN:L_Mid1_JNT
+      position: {x: -0.05540227, y: 0.00000009807206, z: -0.000000011227496}
+      rotation: {x: -0.043000072, y: -0.000086367574, z: 0.003616513, w: 0.99906856}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MAN:L_Mid3_JNT
+      parentName: MAN:L_Mid2_JNT
+      position: {x: -0.051092528, y: -0.00000015936061, z: -0.0000000033820637}
+      rotation: {x: 0.03874665, y: 0.0000006506523, z: 0.000003114204, w: 0.9992491}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MAN:L_Mid4_JNT
+      parentName: MAN:L_Mid3_JNT
+      position: {x: -0.040999997, y: -5.684342e-16, z: 1.7763567e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MAN:L_Pinky1_JNT
+      parentName: MAN:L_Wrist_JNT
+      position: {x: -0.066855274, y: 2.4104152e-10, z: -0.02947408}
+      rotation: {x: -0.013552732, y: -0.065900095, z: 0.0349367, w: 0.9971223}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MAN:L_Pinky2_JNT
+      parentName: MAN:L_Pinky1_JNT
+      position: {x: -0.049639404, y: 0.000000007877698, z: -0.000000013788939}
+      rotation: {x: 0.07943296, y: 0.00023737544, z: 0.0042387685, w: 0.9968312}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MAN:L_Pinky3_JNT
+      parentName: MAN:L_Pinky2_JNT
+      position: {x: -0.04153787, y: -0.000000039565087, z: -8.455487e-10}
+      rotation: {x: 0.12402168, y: -0.00000014550452, z: 0.000001665593, w: 0.99227947}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MAN:L_Pinky4_JNT
+      parentName: MAN:L_Pinky3_JNT
+      position: {x: -0.033850197, y: 0, z: 2.4868996e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Fingers_grp 1
       parentName: MAN:L_Wrist_JNT
       position: {x: -0, y: 0, z: 0}
@@ -1410,346 +1449,306 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Thumb_01_JNT
       parentName: MAN:L_Fingers_grp 1
-      position: {x: -0.05313133, y: -0.028792981, z: 0.03225801}
-      rotation: {x: 0.474937, y: 0.3337069, z: -0.13305406, w: 0.80335003}
-      scale: {x: 1, y: 1.0000001, z: 1.0000002}
+      position: {x: -0.053131323, y: -0.028792977, z: 0.032258}
+      rotation: {x: 0.49379483, y: 0.30618158, z: -0.15484521, w: 0.7990261}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Thumb_02_JNT
       parentName: MAN:L_Thumb_01_JNT
-      position: {x: -0.03721998, y: -0.0000000017883459, z: 0.0018574436}
-      rotation: {x: -0.11403795, y: 0.00032809362, z: 0.02570138, w: 0.9931438}
-      scale: {x: 1, y: 1.0000001, z: 1.0000002}
+      position: {x: -0.0372199, y: 0.000000024707752, z: 0.0018574556}
+      rotation: {x: -0.15086429, y: 0.021505639, z: 0.016125102, w: 0.988189}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Thumb_03_JNT
       parentName: MAN:L_Thumb_02_JNT
-      position: {x: -0.044005293, y: -0.0000000020315347, z: -3.7079914e-10}
-      rotation: {x: 0.030924547, y: 0.035102006, z: -0.019243788, w: 0.99871975}
-      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+      position: {x: -0.04400524, y: 0.00000003011423, z: 0.0000000040336703}
+      rotation: {x: 0.14231388, y: -0.00940963, z: 0.021968808, w: 0.989533}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Thumb_04_JNT
       parentName: MAN:L_Thumb_03_JNT
       position: {x: -0.024999999, y: -2.8823818e-15, z: 8.971599e-16}
-      rotation: {x: -0, y: -0, z: 5.8207655e-10, w: 1}
-      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000001}
-    - name: MAN:L_Mid1_JNT
-      parentName: MAN:L_Wrist_JNT
-      position: {x: -0.063647345, y: 7.164686e-11, z: 0.0004920275}
-      rotation: {x: -0.0012031548, y: -0.0041509275, z: 0.0806221, w: 0.99673545}
-      scale: {x: 1.0000001, y: 1.0000004, z: 1}
-    - name: MAN:L_Mid2_JNT
-      parentName: MAN:L_Mid1_JNT
-      position: {x: -0.05540213, y: 6.988145e-11, z: -7.4369025e-11}
-      rotation: {x: -0.010914514, y: -0.016078284, z: 0.036165986, w: 0.99915683}
-      scale: {x: 0.99999994, y: 0.99999994, z: 1.0000001}
-    - name: MAN:L_Mid3_JNT
-      parentName: MAN:L_Mid2_JNT
-      position: {x: -0.051092543, y: 8.3742575e-11, z: -1.06086515e-10}
-      rotation: {x: 0.009310299, y: 0.0096628005, z: 0.038638797, w: 0.99916315}
-      scale: {x: 0.99999994, y: 0.9999998, z: 0.99999994}
-    - name: MAN:L_Mid4_JNT
-      parentName: MAN:L_Mid3_JNT
-      position: {x: -0.040999997, y: -5.684342e-16, z: 1.7763567e-16}
-      rotation: {x: -9.3132246e-10, y: -0, z: 0.0000000034196996, w: 1}
-      scale: {x: 1.0000002, y: 1.0000001, z: 1}
-    - name: MAN:L_Pinky1_JNT
-      parentName: MAN:L_Wrist_JNT
-      position: {x: -0.066855274, y: 2.4104138e-10, z: -0.02947408}
-      rotation: {x: -0.013552778, y: -0.06590253, z: 0.034935817, w: 0.9971222}
-      scale: {x: 1, y: 1, z: 0.99999994}
-    - name: MAN:L_Pinky2_JNT
-      parentName: MAN:L_Pinky1_JNT
-      position: {x: -0.049639504, y: 1.4153656e-10, z: -3.98542e-11}
-      rotation: {x: 0.019824639, y: 0.017135954, z: 0.032276865, w: 0.99913543}
-      scale: {x: 1.0000002, y: 1, z: 0.99999994}
-    - name: MAN:L_Pinky3_JNT
-      parentName: MAN:L_Pinky2_JNT
-      position: {x: -0.041537855, y: 8.954657e-11, z: -8.737807e-11}
-      rotation: {x: 0.032898292, y: 0.022283223, z: 0.031307276, w: 0.9987197}
-      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000001}
-    - name: MAN:L_Pinky4_JNT
-      parentName: MAN:L_Pinky3_JNT
-      position: {x: -0.033850197, y: 0, z: 2.4868996e-16}
-      rotation: {x: -0, y: -0, z: -0.0000000032596286, w: 1}
-      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Shoulder_FK_JNT
       parentName: MAN:L_Clavicle_JNT
-      position: {x: -0.18734813, y: -0.000000038236575, z: -0.0000000029864011}
-      rotation: {x: -0.01752886, y: 0.12306124, z: 0.13992198, w: 0.98232913}
-      scale: {x: 1.0000006, y: 0.9999996, z: 0.99999994}
+      position: {x: -0.18734813, y: -0.000000038236575, z: -0.000000002986401}
+      rotation: {x: -0.047200073, y: 0.24362274, z: 0.55324066, w: 0.7952012}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Elbow_FK_JNT
       parentName: MAN:L_Shoulder_FK_JNT
-      position: {x: -0.2545825, y: 0.000000041268613, z: 0.0000000023916291}
-      rotation: {x: 0.0000000037252899, y: 0.15383154, z: 0.00000011641531, w: 0.9880971}
-      scale: {x: 0.9999998, y: 1, z: 1.0000001}
+      position: {x: -0.2545825, y: 0.000000041268613, z: 0.0000000023916296}
+      rotation: {x: 8.386827e-17, y: 0.860902, z: -8.386827e-17, w: 0.5087708}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Wrist_FK_JNT
       parentName: MAN:L_Elbow_FK_JNT
-      position: {x: -0.24826135, y: 0.0000000032845149, z: -6.992839e-10}
-      rotation: {x: 7.5529516e-10, y: 0.00000011920929, z: 0.00000009201539, w: 1}
-      scale: {x: 1.0000002, y: 1.0000001, z: 0.99999994}
+      position: {x: -0.24826135, y: 6.607115e-10, z: 1.4210854e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Shoulder_IK_JNT
       parentName: MAN:L_Clavicle_JNT
       position: {x: -0.18734813, y: -0.000000038236575, z: -0.0000000029864011}
-      rotation: {x: -0.017529069, y: 0.123061284, z: 0.13992208, w: 0.9823291}
-      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+      rotation: {x: -0.017528951, y: 0.12306131, z: 0.13992204, w: 0.98232913}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Elbow_IK_JNT
       parentName: MAN:L_Shoulder_IK_JNT
       position: {x: -0.2545825, y: 0.000000040600625, z: 0.0000000023916296}
-      rotation: {x: 0.000000022351744, y: 0.15383156, z: 0.0000000698492, w: 0.98809713}
-      scale: {x: 1, y: 1, z: 1.0000001}
+      rotation: {x: -3.6817785e-16, y: 0.15383151, z: -2.3648957e-15, w: 0.98809713}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Wrist_IK_JNT
       parentName: MAN:L_Elbow_IK_JNT
       position: {x: -0.24826135, y: -1.1368684e-15, z: -7.105427e-17}
-      rotation: {x: 0.00000022912236, y: -0.000000059604638, z: 0.0000000055094973, w: 1}
-      scale: {x: 1, y: 1.0000001, z: 1}
+      rotation: {x: 0.00000022580195, y: 7.4383765e-15, z: 0.000000032942037, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Clavicle_JNT
       parentName: MAN:CSpine_JNT
-      position: {x: -0.10793776, y: 0.032562092, z: -0.045272473}
-      rotation: {x: 0.37350556, y: 0.43459854, z: -0.69751495, w: 0.4302216}
-      scale: {x: 1, y: 1.0000004, z: 1.0000005}
+      position: {x: -0.10785952, y: 0.032227512, z: -0.04590434}
+      rotation: {x: -0.5040848, y: -0.20658223, z: 0.82623583, w: -0.14337595}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Shoulder_JNT
       parentName: MAN:R_Clavicle_JNT
       position: {x: 0.18563, y: 0.018159999, z: -0.01766}
-      rotation: {x: -0.032811712, y: 0.16977732, z: 0.18689309, w: 0.96704197}
-      scale: {x: 1.0000005, y: 0.9999996, z: 0.9999998}
+      rotation: {x: -0.13878895, y: 0.15648718, z: 0.17629445, w: 0.96185744}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Elbow_JNT
       parentName: MAN:R_Shoulder_JNT
       position: {x: 0.25458214, y: 0.0000049661244, z: -0.0000016619823}
-      rotation: {x: -0.004157184, y: 0.036860198, z: -0.026703317, w: 0.99895495}
-      scale: {x: 0.9999998, y: 1.0000002, z: 1.0000004}
+      rotation: {x: 0.11470257, y: -0.0027055286, z: -0.012178584, w: 0.9933216}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Wrist_JNT
       parentName: MAN:R_Elbow_JNT
       position: {x: 0.24826086, y: 0, z: -0.000000090383814}
-      rotation: {x: 0.00000002253748, y: -0, z: -0.000000011571921, w: 1}
-      scale: {x: 1.0000001, y: 1, z: 0.99999994}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Pinky1_JNT
       parentName: MAN:R_Wrist_JNT
-      position: {x: 0.06685515, y: 2.5285088e-11, z: 0.029474055}
-      rotation: {x: -0.013552108, y: -0.06590283, z: 0.03494198, w: 0.99712205}
-      scale: {x: 1, y: 1.0000001, z: 1.0000005}
+      position: {x: 0.06685515, y: 2.528523e-11, z: 0.029474055}
+      rotation: {x: -0.013552089, y: -0.06590426, z: 0.03494184, w: 0.99712193}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Pinky2_JNT
       parentName: MAN:R_Pinky1_JNT
-      position: {x: 0.049639422, y: -0.0000007388845, z: -0.000000069482645}
-      rotation: {x: 0.019823471, y: 0.01713505, z: 0.032281052, w: 0.9991354}
-      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+      position: {x: 0.04963942, y: -0.0000007790631, z: -0.00000006984702}
+      rotation: {x: 0.07079434, y: 0.00050201995, z: 0.00760676, w: 0.99746186}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Pinky3_JNT
       parentName: MAN:R_Pinky2_JNT
-      position: {x: 0.04153814, y: -0.000001400838, z: 0.000000086449454}
-      rotation: {x: 0.032897208, y: 0.02227909, z: 0.03129639, w: 0.99872017}
-      scale: {x: 0.9999998, y: 1.0000001, z: 1.0000001}
+      position: {x: 0.04153814, y: -0.0000014008345, z: 0.00000008640344}
+      rotation: {x: 0.1268519, y: -0.000004579077, z: -0.000008658325, w: 0.9919217}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Pinky4_JNT
       parentName: MAN:R_Pinky3_JNT
       position: {x: 0.033849485, y: -0.0000006052509, z: -0.00000010036196}
-      rotation: {x: -0, y: -0, z: 0.000000007217748, w: 1}
-      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Mid1_JNT
       parentName: MAN:R_Wrist_JNT
-      position: {x: 0.063647315, y: -2.7621353e-11, z: -0.0004920483}
-      rotation: {x: -0.0012029599, y: -0.0041519525, z: 0.08065514, w: 0.9967327}
-      scale: {x: 0.99999994, y: 0.99999994, z: 1.0000001}
+      position: {x: 0.063647315, y: -2.7620926e-11, z: -0.0004920483}
+      rotation: {x: -0.00120297, y: -0.0041523413, z: 0.08065648, w: 0.9967326}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Mid2_JNT
       parentName: MAN:R_Mid1_JNT
-      position: {x: 0.05540167, y: -0.0000035466348, z: 0.00000008518396}
-      rotation: {x: -0.010913631, y: -0.016073374, z: 0.036137804, w: 0.999158}
-      scale: {x: 1, y: 1.0000002, z: 1.0000004}
+      position: {x: 0.05540171, y: -0.0000035573898, z: 0.000000088241755}
+      rotation: {x: -0.039320633, y: -0.00018094709, z: 0.0063977535, w: 0.9992061}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Mid3_JNT
       parentName: MAN:R_Mid2_JNT
-      position: {x: 0.051092442, y: -0.00000036732848, z: 0.0000000013849932}
-      rotation: {x: 0.009310582, y: 0.009655906, z: 0.038587686, w: 0.9991652}
-      scale: {x: 0.99999994, y: 1, z: 1}
+      position: {x: 0.051092345, y: -0.0000004101411, z: 0.0000000043101647}
+      rotation: {x: 0.034221936, y: 0.0000036035615, z: -0.000057221154, w: 0.99941427}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Mid4_JNT
       parentName: MAN:R_Mid3_JNT
       position: {x: 0.040999997, y: 0.0000041883754, z: -0.000000041516348}
-      rotation: {x: -9.3132224e-10, y: -0, z: -0.000000009575157, w: 1}
-      scale: {x: 1.0000002, y: 1.0000001, z: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Thumb_01_JNT
       parentName: MAN:R_Wrist_JNT
-      position: {x: 0.053132147, y: 0.028789999, z: -0.032257877}
-      rotation: {x: -0.46135625, y: -0.35609055, z: 0.1137374, w: -0.8046203}
-      scale: {x: 0.99999994, y: 0.9999998, z: 0.9999998}
+      position: {x: 0.053132165, y: 0.028790014, z: -0.03225789}
+      rotation: {x: 0.5036576, y: -0.0089794835, z: -0.34119138, w: 0.7936227}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Thumb_02_JNT
       parentName: MAN:R_Thumb_01_JNT
-      position: {x: 0.037265193, y: 0.000000007200048, z: 0.000000027748076}
-      rotation: {x: 0.05189715, y: 0.0034645784, z: 0.035025734, w: 0.99803203}
-      scale: {x: 1, y: 0.99999934, z: 1.0000001}
+      position: {x: 0.037265167, y: -0.00000008779668, z: 3.2694572e-10}
+      rotation: {x: -0.07189677, y: -0.0011113753, z: 0.011833162, w: 0.9973413}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Thumb_03_JNT
       parentName: MAN:R_Thumb_02_JNT
-      position: {x: 0.04400759, y: 0.000000003624, z: 0.0000000013026195}
-      rotation: {x: -0.030471932, y: -0.0341857, z: -0.017640317, w: 0.9987951}
-      scale: {x: 1.0000004, y: 1.0000006, z: 1}
+      position: {x: 0.044007618, y: 0.00000002985349, z: -0.0000000024172058}
+      rotation: {x: 0.1716816, y: -0.0026486588, z: 0.012325806, w: 0.98507184}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Thumb_04_JNT
       parentName: MAN:R_Thumb_03_JNT
       position: {x: 0.02499832, y: 5.3290704e-17, z: 8.5265126e-16}
-      rotation: {x: -0, y: 0.0000000074505797, z: -0.0000000032596286, w: 1}
-      scale: {x: 1.0000002, y: 0.99999994, z: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Shoulder_FK_JNT
       parentName: MAN:R_Clavicle_JNT
       position: {x: 0.18562998, y: 0.018160049, z: -0.017660003}
-      rotation: {x: -0.032811712, y: 0.16977732, z: 0.18689309, w: 0.96704197}
-      scale: {x: 1.0000005, y: 0.9999996, z: 0.9999998}
+      rotation: {x: -0.03496881, y: 0.26449117, z: 0.68461883, w: 0.6783205}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Elbow_FK_JNT
       parentName: MAN:R_Shoulder_FK_JNT
-      position: {x: 0.2545821, y: 0.0000049133773, z: -0.0000016728495}
-      rotation: {x: 0.000000046566118, y: 0.15383153, z: -0.00000002793967, w: 0.9880971}
-      scale: {x: 0.9999998, y: 1.0000002, z: 1.0000004}
+      position: {x: 0.2545821, y: 0.000004912359, z: -0.000001674114}
+      rotation: {x: 0.077120006, y: 0.80375427, z: -0.10801466, w: 0.57996935}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Wrist_FK_JNT
       parentName: MAN:R_Elbow_FK_JNT
-      position: {x: 0.24826086, y: -0.000000004730038, z: -0.00000009039242}
-      rotation: {x: 0.00000002253748, y: -0, z: -0.000000011571921, w: 1}
-      scale: {x: 1.0000001, y: 1, z: 0.99999994}
+      position: {x: 0.24826086, y: -5.794685e-10, z: -0.00000009041054}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Shoulder_IK_JNT
       parentName: MAN:R_Clavicle_JNT
       position: {x: 0.18562998, y: 0.018160049, z: -0.017660003}
-      rotation: {x: -0.03278425, y: 0.16978265, z: 0.18688385, w: 0.9670437}
-      scale: {x: 1.0000004, y: 0.9999997, z: 0.9999997}
+      rotation: {x: -0.03278423, y: 0.16978264, z: 0.18688376, w: 0.9670437}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Elbow_IK_JNT
       parentName: MAN:R_Shoulder_IK_JNT
       position: {x: 0.25458214, y: 0.000004913828, z: -0.0000016603353}
-      rotation: {x: 0.000000048428763, y: 0.15383153, z: -0.00000006053595, w: 0.9880971}
-      scale: {x: 0.99999994, y: 1.0000004, z: 1.0000005}
+      rotation: {x: 2.5014206e-16, y: 0.15383151, z: 1.606719e-15, w: 0.98809713}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Wrist_IK_JNT
       parentName: MAN:R_Elbow_IK_JNT
       position: {x: 0.24826086, y: 0, z: -0.000000090383814}
-      rotation: {x: -0.000029092116, y: -0, z: -0.0000045914035, w: 1}
-      scale: {x: 0.9999998, y: 1.0000007, z: 1.0000001}
+      rotation: {x: -0.000029078188, y: 1.334478e-10, z: -0.000004589275, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Hip_JNT
       parentName: MAN:Pelvis_JNT
       position: {x: 0.029754592, y: -0.029649394, z: 0.13522962}
-      rotation: {x: -0.081601046, y: 0.9966413, z: 0.0008565188, w: 0.00684017}
-      scale: {x: 0.9999998, y: 1.0000002, z: 1}
+      rotation: {x: -0.013675062, y: 0.99578416, z: 0.046122875, w: 0.07809993}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Knee_01_JNT
       parentName: MAN:L_Hip_JNT
       position: {x: -0.44548988, y: 7.105427e-17, z: -5.3290704e-17}
-      rotation: {x: -0.00000003694276, y: 0.000000020324476, z: 0.5471993, w: 0.83700234}
-      scale: {x: 1.0000001, y: 1.0000005, z: 1.0000001}
+      rotation: {x: -0.00015482435, y: 0.0010963455, z: 0.5283954, w: 0.8489977}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Knee_02_JNT
       parentName: MAN:L_Knee_01_JNT
       position: {x: -0.35855782, y: 7.105427e-17, z: 3.5527136e-17}
-      rotation: {x: 0.000000038781774, y: -0.000000016350022, z: -0.5805089, w: 0.8142539}
-      scale: {x: 1.0000004, y: 1, z: 1.0000002}
+      rotation: {x: -1.5532308e-16, y: -2.2414382e-16, z: -0.5721693, w: 0.82013553}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Ankle_JNT
       parentName: MAN:L_Knee_02_JNT
       position: {x: -0.21024011, y: -1.637579e-16, z: 1.7763568e-17}
-      rotation: {x: 0.1031553, y: -0.124908075, z: -0.33397055, w: 0.92855835}
+      rotation: {x: 0.09814663, y: -0.10289769, z: -0.488485, w: 0.86090755}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Toe_01_Reverse_JNT
       parentName: MAN:L_Ankle_JNT
       position: {x: -0.113372006, y: 4.427014e-17, z: 0}
-      rotation: {x: -0.1951249, y: -0.07423129, z: -0.24884155, w: 0.94577694}
-      scale: {x: 1.0000002, y: 0.9999998, z: 1}
+      rotation: {x: -0.19512486, y: -0.07423118, z: -0.24884161, w: 0.9457769}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Toe_02_Reverse_JNT
       parentName: MAN:L_Toe_01_Reverse_JNT
       position: {x: -0.096070126, y: -1.9984014e-17, z: -1.5987211e-16}
-      rotation: {x: -0, y: -0, z: 0.0000000027939675, w: 1}
-      scale: {x: 1.0000004, y: 0.99999994, z: 1.0000002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Toe_01_Pinky_JNT
       parentName: MAN:L_Ankle_JNT
       position: {x: -0.099915475, y: -0.03218218, z: -0.057270784}
-      rotation: {x: -0.20642132, y: -0.11787961, z: -0.23955388, w: 0.9413335}
-      scale: {x: 1.0000001, y: 0.9999997, z: 1}
+      rotation: {x: -0.20642132, y: -0.11787951, z: -0.23955396, w: 0.9413334}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Toe_02_Pinky_JNT
       parentName: MAN:L_Toe_01_Pinky_JNT
       position: {x: -0.07112526, y: 0, z: -3.5527136e-17}
-      rotation: {x: -0, y: -0, z: -0, w: 1}
-      scale: {x: 1.0000002, y: 0.99999994, z: 1.0000001}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Toe_01_Ring_JNT
       parentName: MAN:L_Ankle_JNT
       position: {x: -0.1074869, y: -0.012963799, z: -0.022371402}
-      rotation: {x: -0.1949176, y: -0.07344378, z: -0.249004, w: 0.9458384}
-      scale: {x: 1.0000001, y: 0.9999997, z: 1}
+      rotation: {x: -0.19491762, y: -0.07344372, z: -0.24900399, w: 0.94583833}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Toe_02_Ring_JNT
       parentName: MAN:L_Toe_01_Ring_JNT
       position: {x: -0.0872097, y: -4.440892e-18, z: 0}
-      rotation: {x: -0, y: -0, z: -9.3132224e-10, w: 1}
-      scale: {x: 1, y: 1, z: 1.0000001}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Toe_01_Index_JNT
       parentName: MAN:L_Ankle_JNT
       position: {x: -0.119954795, y: 0.010055838, z: 0.014317696}
-      rotation: {x: -0.17288321, y: 0.0078048185, z: -0.2647777, w: 0.9486534}
-      scale: {x: 1, y: 0.99999994, z: 1}
+      rotation: {x: -0.17288318, y: 0.0078049125, z: -0.26477778, w: 0.9486534}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Toe_02_Index_JNT
       parentName: MAN:L_Toe_01_Index_JNT
       position: {x: -0.09328348, y: -4.440892e-18, z: -3.5527136e-17}
-      rotation: {x: -0, y: -0, z: -0.000000007916242, w: 1}
-      scale: {x: 1, y: 0.99999994, z: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Toe_01_Thumb_JNT
       parentName: MAN:L_Ankle_JNT
       position: {x: -0.10397911, y: 0.017725207, z: 0.056823358}
-      rotation: {x: -0.14841516, y: 0.092937045, z: -0.27922896, w: 0.9441223}
-      scale: {x: 0.99999994, y: 0.9999998, z: 0.99999994}
+      rotation: {x: -0.14841515, y: 0.09293709, z: -0.27922896, w: 0.94412225}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:L_Toe_02_Thumb_JNT
       parentName: MAN:L_Toe_01_Thumb_JNT
       position: {x: -0.106295414, y: 0, z: 0}
-      rotation: {x: -0, y: -0, z: 0.000000007450579, w: 1}
-      scale: {x: 1.0000001, y: 0.99999994, z: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Hip_JNT
       parentName: MAN:Pelvis_JNT
       position: {x: 0.02975446, y: -0.029649382, z: -0.13522999}
-      rotation: {x: -0.081600845, y: 0.9966413, z: -0.0008711815, w: -0.0068374574}
-      scale: {x: 1, y: 1.0000002, z: 0.9999999}
+      rotation: {x: -0.03341432, y: 0.999382, z: -0.008630693, w: -0.006677747}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Knee_01_JNT
       parentName: MAN:R_Hip_JNT
       position: {x: -0.4454898, y: 1.4210854e-16, z: 3.5527136e-17}
-      rotation: {x: -0.000000041713335, y: 0.0000000010002958, z: 0.5471982, w: 0.8370031}
-      scale: {x: 1, y: 1.0000004, z: 1.0000002}
+      rotation: {x: -0.000026026628, y: 0.00014664407, z: 0.5431639, w: 0.8396267}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Knee_02_JNT
       parentName: MAN:R_Knee_01_JNT
       position: {x: -0.3585577, y: 7.105427e-17, z: -1.7763568e-17}
-      rotation: {x: 0.000000042307928, y: -9.1231855e-10, z: -0.5805083, w: 0.8142543}
-      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000002}
+      rotation: {x: -1.540609e-18, y: -1.3789521e-17, z: -0.6030436, w: 0.7977082}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Ankle_JNT
       parentName: MAN:R_Knee_02_JNT
       position: {x: -0.21023989, y: -7.160938e-17, z: -5.3290704e-17}
-      rotation: {x: 0.0005554941, y: -0.006870281, z: -0.04501605, w: 0.9989625}
-      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000002}
+      rotation: {x: -0.039794374, y: -0.012440134, z: -0.15758014, w: 0.98662573}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Toe_01_Reverse_JNT
       parentName: MAN:R_Ankle_JNT
       position: {x: -0.09050044, y: 0.06530653, z: 0.019948}
-      rotation: {x: 0.06942876, y: 0.10626432, z: -0.54253936, w: 0.8303847}
-      scale: {x: 0.9999998, y: 0.9999998, z: 1.0000001}
+      rotation: {x: 0.087793976, y: 0.13326332, z: -0.5359762, w: 0.82901305}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Toe_02_Reverse_JNT
       parentName: MAN:R_Toe_01_Reverse_JNT
       position: {x: -0.09607005, y: -7.5495166e-17, z: 1.5987211e-16}
-      rotation: {x: -0, y: -0, z: 0.0000000032596286, w: 1}
-      scale: {x: 1.0000002, y: 1, z: 1.0000001}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Toe_01_Pinky_JNT
       parentName: MAN:R_Ankle_JNT
       position: {x: -0.079068586, y: 0.039241917, z: 0.08066499}
-      rotation: {x: 0.0944419, y: 0.14454821, z: -0.53874856, w: 0.82458264}
-      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+      rotation: {x: 0.118530706, y: 0.16047625, z: -0.48024526, w: 0.8541442}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Toe_02_Pinky_JNT
       parentName: MAN:R_Toe_01_Pinky_JNT
       position: {x: -0.0711256, y: 4.440892e-18, z: 0}
-      rotation: {x: -0, y: -0.0000000074505797, z: 0.00000002235174, w: 1}
-      scale: {x: 1.0000002, y: 0.99999994, z: 1.0000001}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Toe_01_Ring_JNT
       parentName: MAN:R_Ankle_JNT
       position: {x: -0.08573717, y: 0.05444629, z: 0.043665}
-      rotation: {x: 0.068979114, y: 0.105576105, z: -0.54259664, w: 0.83047247}
-      scale: {x: 1.0000002, y: 1, z: 1.0000001}
+      rotation: {x: 0.087612554, y: 0.12903906, z: -0.5219945, w: 0.8385671}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Toe_02_Ring_JNT
       parentName: MAN:R_Toe_01_Ring_JNT
       position: {x: -0.08721015, y: -2.6645352e-17, z: -3.5527136e-17}
-      rotation: {x: -0, y: -0, z: 0.000000008847564, w: 1}
-      scale: {x: 0.9999997, y: 1, z: 0.9999997}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Toe_01_Index_JNT
       parentName: MAN:R_Ankle_JNT
       position: {x: -0.09488269, y: 0.07529805, z: 0.004768}
-      rotation: {x: 0.022270352, y: 0.034085896, z: -0.54651, w: 0.8364622}
-      scale: {x: 0.9999998, y: 0.99999994, z: 1}
+      rotation: {x: 0.042169765, y: 0.06560287, z: -0.5580715, w: 0.82611996}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Toe_02_Index_JNT
       parentName: MAN:R_Toe_01_Index_JNT
       position: {x: -0.09328319, y: -4.4408918e-17, z: 7.105427e-17}
-      rotation: {x: -0, y: -0, z: -0.00000000995351, w: 1}
-      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Toe_01_Thumb_JNT
       parentName: MAN:R_Ankle_JNT
       position: {x: -0.091072045, y: 0.066609785, z: -0.040296}
-      rotation: {x: -0.026882155, y: -0.041144576, z: -0.5463026, w: 0.8361447}
-      scale: {x: 0.9999998, y: 1, z: 1}
+      rotation: {x: -0.004530847, y: -0.0111445775, z: -0.5846166, w: 0.8112205}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:R_Toe_02_Thumb_JNT
       parentName: MAN:R_Toe_01_Thumb_JNT
       position: {x: -0.106295615, y: -2.4424906e-17, z: -1.7763568e-17}
-      rotation: {x: -0, y: 0.0000000037252899, z: -0.0000000013969838, w: 1}
-      scale: {x: 0.99999994, y: 1, z: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: MAN:WOLF
-      parentName: idle(Clone)
+      parentName: Atack(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -1759,8 +1758,8 @@ ModelImporter:
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MAN:locator1
-      parentName: idle(Clone)
-      position: {x: -0.016599799, y: 1.3275877, z: 0.2255506}
+      parentName: Atack(Clone)
+      position: {x: -0.032309223, y: 1.3508623, z: 0.12956104}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
@@ -1779,7 +1778,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
