@@ -30,4 +30,12 @@ public class AnimationEventHolder : MonoBehaviour
             Player.EndMeleeAttack();
         }
     } 
+    
+    public void OnPlayerRangeAttackEnded()
+    {
+        if (Player)
+        {
+            Player.EndRangeAttack();
+        }
+    } 
 }

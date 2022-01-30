@@ -235,22 +235,9 @@ public class Player : MonoBehaviour
             RotateTowardMouse();
             if (OnLight)
             {
-                var projectile = Instantiate(Projectile, AttackPoint.position, Model.transform.rotation).GetComponent<Projectile>();
-                projectile.Damage = characteristics.DistanceAttackDamage;
-                projectile.TriggerEnter += (sender, Damage, collider) =>
-                {
-                    var Hp = collider.gameObject.GetComponent<HaveHealth>();
-                    if (Hp != null)
-                    {
-                        Hp.TakeDamage(characteristics.DistanceAttackDamage);
-                        _audioController.PlayRangeHitShotAttack();
-                    }
-                    else if (!collider.isTrigger) Destroy(sender);
-                };
                 _attackCooldown = 0.5f;
                 
                 _animator.SetTrigger("AttackRange");
-                _audioController.PlayRangePreShotAttack();
             }
             else
             {
@@ -277,5 +264,23 @@ public class Player : MonoBehaviour
             }
         }
         if (HitEnemies.Length > 0) _audioController.PlayMeleeHitAttack();
+    }
+
+    public void EndRangeAttack()
+    {
+        var projectile = Instantiate(Projectile, AttackPoint.position, Model.transform.rotation).GetComponent<Projectile>();
+        projectile.Damage = characteristics.DistanceAttackDamage;
+        projectile.TriggerEnter += (sender, Damage, collider) =>
+        {
+            var Hp = collider.gameObject.GetComponent<HaveHealth>();
+            if (Hp != null)
+            {
+                Hp.TakeDamage(characteristics.DistanceAttackDamage);
+                _audioController.PlayRangeHitShotAttack();
+            }
+            else if (!collider.isTrigger) Destroy(sender);
+        };
+        
+        _audioController.PlayRangePreShotAttack();
     }
 }
