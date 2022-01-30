@@ -115,6 +115,7 @@ MonoBehaviour:
   MaxHealth: 40
   CurHealth: 40
   slider: {fileID: 4357456515375044376}
+  ColorSpeed: 5
 --- !u!195 &3342633971413447713
 NavMeshAgent:
   m_ObjectHideFlags: 0
