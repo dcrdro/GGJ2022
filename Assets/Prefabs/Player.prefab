@@ -516,21 +516,6 @@ SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 7257428126357691149, guid: d2c1ff17f52c74842b8269b45c2ef899, type: 3}
   m_PrefabInstance: {fileID: 3062708940176377154}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5811830711408339264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2756629978566981651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa9236bf00dd4fa3ae2c58c85c2f2c79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DistanceEnemy: {fileID: 0}
-  FastEnemy: {fileID: 0}
-  Player: {fileID: 5373300789523532630}
 --- !u!95 &8498938248044190439
 Animator:
   serializedVersion: 3
@@ -546,13 +531,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'MAN:Pelvis_JNT'\n\tTransform 'MAN:L_Clavicle_JNT'\n\tTransform
-    'MAN:Neck2_JNT'\n\tTransform 'MAN:R_Clavicle_JNT'\n\tTransform 'MAN:L_Knee_01_JNT'\n\tTransform
-    'MAN:L_Shoulder_JNT'\n\tTransform 'MAN:L_Elbow_JNT'\n\tTransform 'MAN:R_Pinky3_JNT'\n\tTransform
-    'MAN:R_Mid3_JNT'\n\tTransform 'MAN:L_Knee_02_JNT'\n\tand more ...\n\tFrom animation
-    clip 'idle'\n\tFrom animation clip 'Atack'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -571,6 +550,21 @@ MonoBehaviour:
   StepSound:
   - {fileID: 8300000, guid: 6d7755b3470694d22a02576c1c797e20, type: 3}
   SprintSound: []
+--- !u!114 &5811830711408339264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2756629978566981651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa9236bf00dd4fa3ae2c58c85c2f2c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DistanceEnemy: {fileID: 0}
+  FastEnemy: {fileID: 0}
+  Player: {fileID: 5373300789523532630}
 --- !u!1001 &5373300789453542973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -660,7 +654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1672423201018323663, guid: 83725aa6e10f12d46a29f47bc0ec6fac, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.335
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 1672423201018323663, guid: 83725aa6e10f12d46a29f47bc0ec6fac, type: 3}
       propertyPath: m_LocalRotation.w
@@ -684,7 +678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1672423201018323663, guid: 83725aa6e10f12d46a29f47bc0ec6fac, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.401
+      value: 2.151
       objectReference: {fileID: 0}
     - target: {fileID: 1672423201018323663, guid: 83725aa6e10f12d46a29f47bc0ec6fac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
