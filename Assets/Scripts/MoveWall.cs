@@ -23,6 +23,7 @@ public class MoveWall : MonoBehaviour
     {
         if (BladePedestal.ActivatedCount >= NeedsToOpen && !Open)
         {
+            Open = true;
             CutsceneManager.Instance.Show(CutseneKey, Activated);
         }
         if (Open)

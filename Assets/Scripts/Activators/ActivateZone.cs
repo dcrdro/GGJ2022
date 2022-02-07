@@ -18,6 +18,7 @@ public class ActivateZone : ActivateTrigger
         {
             Activated?.Invoke();
             _isActivated = true;
+            GetComponent<Collider>().enabled = false;
         }
     }
 }

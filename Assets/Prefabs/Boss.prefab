@@ -391,21 +391,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActivateTrigger: {fileID: 0}
   health: {fileID: 0}
+  ObstacleLayers:
+    serializedVersion: 2
+    m_Bits: 64
   RotationSpeed: 300
   WalkSpeed: 4
   WaitSeconds: 3
   RaycastPosition: {fileID: 1956255646490571247}
   Crown: {fileID: 606794324007123820}
   CrownRotationSpeed: 10
-  ObstacleLayers:
-    serializedVersion: 2
-    m_Bits: 64
   DashVelocity: 15
   ProjectilePosition: {fileID: 606794324175403349}
   CenterPosition: {fileID: 0}
   BossProjectile: {fileID: 4509265637169096406, guid: 273f32277a7fff0418de152310b73b91, type: 3}
   LineRay: {fileID: 606794325969460577}
-  DefendIndicator: {fileID: 0}
 --- !u!114 &606794325051596179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,9 +417,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41889463abf6754ab77b174ab681604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 1000
-  CurHealth: 1000
+  MaxHealth: 600
+  CurHealth: 600
   slider: {fileID: 4851146799506620080}
+  ColorSpeed: 5
 --- !u!1 &606794325139052765
 GameObject:
   m_ObjectHideFlags: 0
