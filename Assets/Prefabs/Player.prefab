@@ -499,6 +499,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rig_Wolf
       objectReference: {fileID: 0}
+    - target: {fileID: 7257428126357691149, guid: d2c1ff17f52c74842b8269b45c2ef899, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e2c8ab35686973541bda92738e4a4e6f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2c1ff17f52c74842b8269b45c2ef899, type: 3}
 --- !u!1 &2756629978566981651 stripped
